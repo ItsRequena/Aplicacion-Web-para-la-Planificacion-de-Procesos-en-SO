@@ -2,7 +2,9 @@
 /* BASIC */
 
 html {
-    background-color: #56baed;
+    background-image: url("../Content/images/fondo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 body {
@@ -11,7 +13,7 @@ body {
 }
 
 a {
-    color: #92badd;
+    color: #cb0017;
     display: inline-block;
     text-decoration: none;
     font-weight: 400;
@@ -82,7 +84,7 @@ h2.active {
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset] {
-    background-color: #56baed;
+    background-color: #cb0017;
     border: none;
     color: white;
     padding: 15px 80px;
@@ -104,7 +106,7 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
     input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-        background-color: #39ace7;
+        background-color: #990011;
     }
 
     input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
@@ -138,7 +140,7 @@ input[type=text] {
 
     input[type=text]:focus {
         background-color: #fff;
-        border-bottom: 2px solid #5fbae9;
+        border-bottom: 2px solid #cb0017;
     }
 
     input[type=text]:placeholder {
@@ -232,27 +234,33 @@ input[type=text] {
 }
 
     .fadeIn.first {
+        -webkit-animation-delay: 0.2s;
+        -moz-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+
+    .fadeIn.second {
         -webkit-animation-delay: 0.4s;
         -moz-animation-delay: 0.4s;
         animation-delay: 0.4s;
     }
 
-    .fadeIn.second {
+    .fadeIn.third {
         -webkit-animation-delay: 0.6s;
         -moz-animation-delay: 0.6s;
         animation-delay: 0.6s;
     }
 
-    .fadeIn.third {
+    .fadeIn.fourth {
+        -webkit-animation-delay: 0.7s;
+        -moz-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+
+    .fadeIn.five {
         -webkit-animation-delay: 0.8s;
         -moz-animation-delay: 0.8s;
         animation-delay: 0.8s;
-    }
-
-    .fadeIn.fourth {
-        -webkit-animation-delay: 1s;
-        -moz-animation-delay: 1s;
-        animation-delay: 1s;
     }
 
 /* Simple CSS3 Fade-in Animation */
@@ -262,7 +270,7 @@ input[type=text] {
     bottom: -10px;
     width: 0;
     height: 2px;
-    background-color: #56baed;
+    background-color: #cb0017;
     content: "";
     transition: width 0.2s;
 }
@@ -271,9 +279,9 @@ input[type=text] {
     color: #0d0d0d;
 }
 
-    .underlineHover:hover:after {
-        width: 100%;
-    }
+.underlineHover:hover:after {
+    width: 100%;
+}
 
 
 
