@@ -18,5 +18,10 @@ namespace TFG.Controllers
         {
             return View();
         }
+
+        public ActionResult Menu()
+        {
+            return View("~/Views/Menu/Menu.cshtml");
+        }
     }
 }
