@@ -13,8 +13,16 @@ namespace TFG.Controllers
             return View();
         }
 
-        public Boolean FCFS(List<int> tllegada, List<List<int>> listaProcesos)
+        public Dictionary<int, List<string>> FCFS(List<int> tllegada, List<List<int>> listaProcesos)
         {
+            // ESTO ES PARA LOS TIEMPO DE ESPERA
+            List<int> tllegadaINICIAL = new List<int>();
+            for(int i=0; i<tllegada.Count; i++)
+            {
+                tllegadaINICIAL.Add(tllegada[i]);
+            }
+
+
             // Creamos e inicializamos el array de espera
             int[] espera = new int[tllegada.Count()];
             for(int i=0; i<tllegada.Count(); i++)
@@ -77,7 +85,11 @@ namespace TFG.Controllers
                         {
                             est.Add(getEstado(estado[i]));
                         }
-                        else if (est[est.Count()-1] != "T")
+                        else if (est[est.Count()-1] == "T" || (est[est.Count() - 1] == "-" && estado[i] == 3) )
+                        {
+                            est.Add("-");
+                        }
+                        else
                         {
                             est.Add(getEstado(estado[i]));
                         }
@@ -111,6 +123,11 @@ namespace TFG.Controllers
                 }
 
                 //3. Actualizamos array de espera, array de llegada y array de rafagas
+                int[] actualizarEspera = new int[tllegada.Count()];
+                for(int i=0; i<tllegada.Count(); i++)
+                {
+                    actualizarEspera[i] = 0;
+                }
                 var actualizarEjecucion = -1;
                 for (int i = 0; i < tllegada.Count(); i++)
                 {
@@ -136,14 +153,16 @@ namespace TFG.Controllers
                                     else
                                     {
                                         estado[i] = 1;
-                                        espera[i] += 10;
+                                        actualizarEspera[i] = 1;
+                                        //espera[i] += 10;
                                     }
 
                                 }
                                 else
                                 {
                                     estado[i] = 1;
-                                    espera[i] += 10;
+                                    actualizarEspera[i] = 1;
+                                    //espera[i] += 10;
                                 }
                             }
                             else
@@ -181,23 +200,31 @@ namespace TFG.Controllers
                                 if (max == espera[i])
                                 {
                                     estado[i] = 0;
-                                    espera[i] = 0;
+                                    //espera[i] = 0;
+                                    actualizarEspera[i] = 2;
                                     actualizarEjecucion = i;
                                     if (nRafaga[i] != 0)
                                     {
                                         nRafaga[i] += 1;
                                         rafagas[nRafaga[i]] -= 10;
                                     }
+                                    else
+                                    {
+                                        rafagas[rafagaProceso] -= 10;
+                                    }
                                 }
                                 else
                                 {
-                                    espera[i] += 10;
+                                    //espera[i] += 10;
+                                    actualizarEspera[i] = 1;
+
                                 }
 
                             }
                             else
                             {
-                                espera[i] += 10;
+                                //espera[i] += 10;
+                                actualizarEspera[i] = 1;
                             }
                         }
                         // proceso en disco
@@ -223,20 +250,23 @@ namespace TFG.Controllers
                                             nRafaga[i] += 1;
                                             actualizarEjecucion = i;
                                             estado[i] = 0;
-                                            espera[i] = 0;
+                                            //espera[i] = 0;
+                                            actualizarEspera[i] = 2;
                                             rafagas[nRafaga[i]] -= 10;
                                         }
                                         else
                                         {
                                             estado[i] = 1;
-                                            espera[i] += 10;
+                                            //espera[i] += 10;
+                                            actualizarEspera[i] = 1;
                                         }
 
                                     }
                                     else
                                     {
                                         estado[i] = 1;
-                                        espera[i] += 10;
+                                        //espera[i] += 10;
+                                        actualizarEspera[i] = 2;
                                     }
                                 }
                             }
@@ -253,6 +283,25 @@ namespace TFG.Controllers
                 {
                     enEjecucion = actualizarEjecucion;
                 }
+
+                // actualizamos array de espera
+                for(int i=0; i<tllegada.Count(); i++)
+                {
+                    switch (actualizarEspera[i])
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            espera[i] += 10;
+                            break;
+                        case 2:
+                            // 0
+                            espera[i] = 0;
+                            break;
+                    }
+                }
+
+
                 // 4. Comprobar si todos los procesos han terminado
                 var comprobacion = true;
                 for (int i=0; i<tllegada.Count(); i++)
@@ -267,11 +316,71 @@ namespace TFG.Controllers
                 tiempo += 1;
             }
 
+            // Añadir ultimo estado
+            for (int i = 0; i < tllegada.Count(); i++)
+            {
+                List<string> est = solucion[i];
+                if (est.Count() == 0)
+                {
+                    est.Add(getEstado(estado[i]));
+                }
+                else if (est[est.Count() - 1] == "T" || (est[est.Count() - 1] == "-" && estado[i] == 3))
+                {
+                    est.Add("-");
+                }
+                else
+                {
+                    est.Add(getEstado(estado[i]));
+                }
+            }
 
 
-            return true;
+            for(int i=0; i<tllegada.Count(); i++)
+            {
+                double x = getTiempoMedio("L",tllegadaINICIAL[i], solucion[i]);
+                double y = getTiempoMedio("E", tllegadaINICIAL[i], solucion[i]);
+            }
+
+            return solucion;
         }
 
+        // Funcion para obtener el tiempo medio de espera/ejecucion de un proceso
+        public double getTiempoMedio(string estado, int tllegada, List<string> rafagas)
+        {
+            double tiempo = 0;
+            int lastPos = 0;
+            for(int i=0; i< rafagas.Count(); i++)
+            {
+                if (rafagas[i] == estado)
+                {
+                    lastPos = i+1;
+                }
+            }
+            if(lastPos == 0 && tllegada == 0)
+            {
+                tiempo = 0;
+            }
+            else if(lastPos != 0 && tllegada != 0)
+            {
+                if(lastPos*10 < tllegada)
+                {
+                    tiempo = 0;
+                }
+                else
+                {
+                    tiempo = lastPos * 10 - tllegada;
+                }
+            }
+            else if(lastPos == 0 && tllegada != 0)
+            {
+                tiempo = tllegada;
+            }
+            else if(lastPos !=0 && tllegada == 0)
+            {
+                tiempo = lastPos * 10;
+            }
+            return tiempo;
+        }
 
         public string getEstado(int estado)
         {

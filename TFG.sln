@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFG", "TFG\TFG.csproj", "{9FA07FB5-2A0D-4598-AE0C-3451022D9064}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAlgoritmos", "TestAlgoritmos\TestAlgoritmos.csproj", "{88ABA9A2-00F9-4E6F-8855-BD8BE7974CEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9FA07FB5-2A0D-4598-AE0C-3451022D9064}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FA07FB5-2A0D-4598-AE0C-3451022D9064}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FA07FB5-2A0D-4598-AE0C-3451022D9064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88ABA9A2-00F9-4E6F-8855-BD8BE7974CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88ABA9A2-00F9-4E6F-8855-BD8BE7974CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88ABA9A2-00F9-4E6F-8855-BD8BE7974CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88ABA9A2-00F9-4E6F-8855-BD8BE7974CEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
