@@ -1,9 +1,7 @@
-﻿
-const numProcesosInput = document.getElementById("numProcesos");
+﻿const numProcesosInput = document.getElementById("numProcesos");
 const procesosDiv = document.getElementById("Procesos");
 
-
-
+// Funcion para la aparición de las rafagas de un proceso
 function cambioSeleccion(numProceso) {
 
     const miSelector = document.getElementById(`numRafagas${numProceso}`);
@@ -28,7 +26,7 @@ function cambioSeleccion(numProceso) {
 
     for (let j = 1; j <= numRafagas; j++) {
         const divRafaga = document.createElement('div');
-        divRafaga.id = "proceso" + numProceso + "-rafaga"+j; // Asignar el ID único al div
+        divRafaga.id = "proceso" + numProceso + "-rafaga" + j; // Asignar el ID único al div
         divRafaga.classList.add("text-center"); // Agregar la clase que centra el contenido
 
         // LABEL TIEMPO DE LA RAFAGA
@@ -41,6 +39,7 @@ function cambioSeleccion(numProceso) {
         const inputRafaga = document.createElement('input');
         inputRafaga.type = 'text';
         inputRafaga.id = `tProceso` + numProceso + `Rafaga${j}`;
+        inputRafaga.classList.add("text-center");
         divRafaga.appendChild(inputRafaga);
 
         // LABEL INDICANDO EL TIPO
@@ -52,14 +51,14 @@ function cambioSeleccion(numProceso) {
             opcionesRafaga.textContent = ` CPU`;
         }
         opcionesRafaga.style.fontWeight = "bold";
+        opcionesRafaga.classList.add("text-center");
         divRafaga.appendChild(opcionesRafaga);
 
         procesoDiv.appendChild(divRafaga)
     }
 }
 
-
-
+// Funcion para la aparición de los procesos
 numProcesosInput.addEventListener("input", function () {
     procesosDiv.innerHTML = ""; // Limpiar contenido anterior
     const numProcesos = parseInt(numProcesosInput.value);
@@ -104,7 +103,7 @@ numProcesosInput.addEventListener("input", function () {
         // SELECT NUMERO DE RAFAGAS
         const inputNumRafagas = document.createElement('select');
         inputNumRafagas.id = `numRafagas${i}`;
-        inputNumRafagas.setAttribute("onchange", "cambioSeleccion("+i+")");
+        inputNumRafagas.setAttribute("onchange", "cambioSeleccion(" + i + ")");
         for (let optionValue = 1; optionValue <= 10; optionValue++) {
             const option = document.createElement('option');
             option.value = optionValue;
@@ -119,3 +118,52 @@ numProcesosInput.addEventListener("input", function () {
 });
 
 
+// Funcion para calcular la planificacion FCFS
+function calcular() {
+    // Recogida de datos
+    var data = {};
+    console.log("numProcesos: " + numProcesosInput.value);
+    //data.numProcesos = numProcesosInput.value;
+
+    var tllegada = [];
+    var listaProcesos = [];
+    for (let i = 0; i < numProcesosInput.value; i++) {
+
+        // Obtenemos el tiempo de llegada del proceso
+        var llegada = document.getElementById(`tllegada${i+1}`);
+        console.log("tLLegada: " + llegada.value)
+        tllegada.push(llegada.value);
+
+        // Obtenemos las rafagas del proceso
+        var numeroRafagas = document.getElementById(`numRafagas${i+1}`);
+        console.log("numero rafagas: " + numeroRafagas.value);
+
+        var rafagas = [];
+        for (let j = 1; j <= numeroRafagas.value; j++) {
+            var rafaga = document.getElementById(`tProceso${i+1}Rafaga${j}`);
+            console.log("rafaga" + j + ": " + rafaga.value);
+            rafagas.push(rafaga.value);
+        }
+        var proceso = i;
+        console.log("proceso: " + proceso);
+        listaProcesos[i] = rafagas;
+
+    }
+    console.log(data);
+    data.tllegada = tllegada;
+    data.listaProcesos = listaProcesos;
+
+    $.ajax({
+        url: '/Menu/FCFS',
+        data: JSON.stringify(data),
+        async: false,
+        method: 'POST',
+        contentType: 'application/json',
+        success: function (data) {
+
+        },
+        error: function () {
+
+        }
+    });
+}
