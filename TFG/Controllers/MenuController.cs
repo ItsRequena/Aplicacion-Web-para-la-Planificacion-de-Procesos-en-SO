@@ -138,7 +138,7 @@ namespace TFG.Controllers
                         {
                             if (tllegada[i] == 0)
                             {
-                                if ( enEjecucion == -1 ) // el proceso que se estaba ejecutando ha terminado
+                                if ( enEjecucion == -1 && actualizarEjecucion == -1) // el proceso que se estaba ejecutando ha terminado
                                 {
                                     int max = mayorEspera(espera);
                                     if (max == espera[i])
@@ -194,7 +194,7 @@ namespace TFG.Controllers
                             int rafagaProceso = nRafaga[i];
                             List<int> rafagas = listaProcesos[i];
                             int rafaga = Convert.ToInt32(rafagas[rafagaProceso]);
-                            if (enEjecucion == -1) // el proceso que se estaba ejecutando ha terminado
+                            if (enEjecucion == -1 && actualizarEjecucion == -1) // el proceso que se estaba ejecutando ha terminado
                             {
                                 int max = mayorEspera(espera);
                                 if (max == espera[i])
@@ -242,7 +242,7 @@ namespace TFG.Controllers
                                 }
                                 else
                                 {
-                                    if (enEjecucion == -1) // el proceso que se estaba ejecutando ha terminado
+                                    if (enEjecucion == -1 && actualizarEjecucion == -1) // el proceso que se estaba ejecutando ha terminado
                                     {
                                         int max = mayorEspera(espera);
                                         if (max == 0)

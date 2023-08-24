@@ -1,5 +1,22 @@
 ﻿const numProcesosInput = document.getElementById("numProcesos");
 const procesosDiv = document.getElementById("Procesos");
+const algoritmo = document.getElementById("algoritmo");
+const tecnicaSelector = document.getElementById('tecnica');
+const tecnicaLabel = document.querySelector('label[for="tecnica"]');
+
+
+//Funcion para la aparicion de las tecnicas cuando see pulsa sobre SJF
+algoritmo.addEventListener("change", function () {
+    const selectedOption = algoritmo.options[algoritmo.selectedIndex];
+    if (selectedOption.value != 'sjf') {
+        tecnicaSelector.hidden = true;
+        tecnicaLabel.hidden = true;
+    }
+    else {
+        tecnicaSelector.hidden = false;
+        tecnicaLabel.hidden = false;
+    }
+});
 
 // Funcion para la aparición de las rafagas de un proceso
 function cambioSeleccion(numProceso) {
