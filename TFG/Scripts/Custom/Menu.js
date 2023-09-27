@@ -203,15 +203,15 @@ function calcular() {
             }
         });
     }
-    if (algoritmo.value == 'sjf' && tecnicaSelector.value == "asoc") {
+    if (algoritmo.value == 'sjf' && tecnicaSelector.value == "aprop") {
         $.ajax({
-            url: '/Menu/SJFasociativo',
+            url: '/Menu/SJFapropiativo',
             data: JSON.stringify(data),
             async: false,
             method: 'POST',
             contentType: 'application/json',
             success: function (data) {
-
+                console.log("INNNN!");
             },
             error: function () {
 
