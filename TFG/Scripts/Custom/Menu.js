@@ -170,17 +170,67 @@ function calcular() {
     data.tllegada = tllegada;
     data.listaProcesos = listaProcesos;
 
-    $.ajax({
-        url: '/Menu/FCFS',
-        data: JSON.stringify(data),
-        async: false,
-        method: 'POST',
-        contentType: 'application/json',
-        success: function (data) {
+    console.log("Algoritmo: " + algoritmo.value);
+    console.log("Tecnica: " + tecnicaSelector.value);
 
-        },
-        error: function () {
+    if (algoritmo.value == 'fcfs') {
+        $.ajax({
+            url: '/Menu/FCFS',
+            data: JSON.stringify(data),
+            async: false,
+            method: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
 
-        }
-    });
+            },
+            error: function () {
+
+            }
+        });
+    }
+    if (algoritmo.value == 'sjf' && tecnicaSelector.value == "coop") {
+        $.ajax({
+            url: '/Menu/SJFcooperativo',
+            data: JSON.stringify(data),
+            async: false,
+            method: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+
+            },
+            error: function () {
+
+            }
+        });
+    }
+    if (algoritmo.value == 'sjf' && tecnicaSelector.value == "asoc") {
+        $.ajax({
+            url: '/Menu/SJFasociativo',
+            data: JSON.stringify(data),
+            async: false,
+            method: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+
+            },
+            error: function () {
+
+            }
+        });
+    }
+    if (algoritmo.value == 'rr') {
+        $.ajax({
+            url: '/Menu/RR',
+            data: JSON.stringify(data),
+            async: false,
+            method: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+
+            },
+            error: function () {
+
+            }
+        });
+    }
 }
