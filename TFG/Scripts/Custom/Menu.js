@@ -1,20 +1,43 @@
 ﻿const numProcesosInput = document.getElementById("numProcesos");
 const procesosDiv = document.getElementById("Procesos");
 const algoritmo = document.getElementById("algoritmo");
+
+const tecnicaDiv = document.getElementById('divtecnica');
 const tecnicaSelector = document.getElementById('tecnica');
 const tecnicaLabel = document.querySelector('label[for="tecnica"]');
+
+const cuantoDiv = document.getElementById('divcuanto');
+const cuantoInput = document.getElementById('cuanto');
+const cuantoLabel = document.querySelector('label[for="cuanto"]');
+
 
 
 //Funcion para la aparicion de las tecnicas cuando see pulsa sobre SJF
 algoritmo.addEventListener("change", function () {
     const selectedOption = algoritmo.options[algoritmo.selectedIndex];
-    if (selectedOption.value != 'sjf') {
-        tecnicaSelector.hidden = true;
-        tecnicaLabel.hidden = true;
-    }
-    else {
+    if (selectedOption.value == 'sjf') {
+        tecnicaDiv.hidden = false;
         tecnicaSelector.hidden = false;
         tecnicaLabel.hidden = false;
+        cuantoDiv.hidden = true;
+        cuantoInput.hidden = true;
+        cuantoLabel.hidden = true;
+    }
+    else if (selectedOption.value == 'rr') {
+        tecnicaDiv.hidden = true;
+        tecnicaSelector.hidden = true;
+        tecnicaLabel.hidden = true;
+        cuantoDiv.hidden = false;
+        cuantoInput.hidden = false;
+        cuantoLabel.hidden = false;
+    }
+    else {
+        tecnicaDiv.hidden = true;
+        tecnicaSelector.hidden = true;
+        tecnicaLabel.hidden = true;
+        cuantoDiv.hidden = true;
+        cuantoInput.hidden = true;
+        cuantoLabel.hidden = true;
     }
 });
 
@@ -219,6 +242,11 @@ function calcular() {
         });
     }
     if (algoritmo.value == 'rr') {
+
+        // Obtener el cuanto
+        var cuanto = document.getElementById(`cuanto`);
+        data.cuanto = cuanto.value;
+
         $.ajax({
             url: '/Menu/RR',
             data: JSON.stringify(data),
