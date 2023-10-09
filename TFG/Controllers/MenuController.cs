@@ -1064,7 +1064,7 @@ namespace TFG.Controllers
                                 {
                                     if (!ejecutedAll(firstEjecuted))
                                     {
-                                        HashSet<int> conjuntoProcesos = stillNotEjecuted(estado, firstEjecuted, tllegada);
+                                        HashSet<int> conjuntoProcesos = stillNotEjecuted(estado, firstEjecuted, tllegada, espera);
                                         if (conjuntoProcesos.Contains(i))
                                         {
                                             int rafagaProceso = nRafaga[i];
@@ -1074,6 +1074,11 @@ namespace TFG.Controllers
                                             firstEjecuted[i] = true;
                                             rafagas[rafagaProceso] -= 10;
                                             processCuanto += 10;
+                                        }
+                                        else
+                                        {
+                                            estado[i] = 1;
+                                            espera[i] += 10;
                                         }
                                     }
                                     else
@@ -1101,6 +1106,7 @@ namespace TFG.Controllers
                                     estado[i] = 1;
                                     //estaEnCola.Add(i);
                                     //colaPreferencia.Enqueue(i);
+                                    espera[i] += 10;
                                 }
                                 
                             }
@@ -1120,7 +1126,7 @@ namespace TFG.Controllers
 
                                 if (!ejecutedAll(firstEjecuted))
                                 {
-                                    HashSet<int> conjuntoProcesos = stillNotEjecuted(estado, firstEjecuted, tllegada);
+                                    HashSet<int> conjuntoProcesos = stillNotEjecuted(estado, firstEjecuted, tllegada, espera);
                                     if (conjuntoProcesos.Contains(i) || conjuntoProcesos.Count() == 0)
                                     {
                                         actualizarEjecucion = i;
@@ -1128,6 +1134,10 @@ namespace TFG.Controllers
                                         firstEjecuted[i] = true;
                                         rafagas[rafagaProceso] -= 10;
                                         processCuanto += 10;
+                                    }
+                                    else
+                                    {
+                                        espera[i] += 10;
                                     }
                                 }
                                 else
@@ -1179,6 +1189,7 @@ namespace TFG.Controllers
                                     estaEnCola.Add(i);
                                     colaPreferencia.Enqueue(i);
                                 }
+                                espera[i] += 10;
                             }
                         }
                         // proceso en disco
@@ -1201,7 +1212,7 @@ namespace TFG.Controllers
 
                                         if (!ejecutedAll(firstEjecuted))
                                         {
-                                            HashSet<int> conjuntoProcesos = stillNotEjecuted(estado, firstEjecuted, tllegada);
+                                            HashSet<int> conjuntoProcesos = stillNotEjecuted(estado, firstEjecuted, tllegada, espera);
                                             if (conjuntoProcesos.Contains(i) || conjuntoProcesos.Count() == 0)
                                             {
                                                 actualizarEjecucion = i;
@@ -1477,23 +1488,39 @@ namespace TFG.Controllers
             return true;
         }
 
-        public HashSet<int> stillNotEjecuted(int[] estados, bool[] ejecuted, List<int> tllegada)
+        public HashSet<int> stillNotEjecuted(int[] estados, bool[] ejecuted, List<int> tllegada, int[] espera)
         {
-            HashSet<int> noEjecutados = new HashSet<int>();
+            HashSet<int> noEjecutadosEspera = new HashSet<int>();
+            List<int> noEjecutados = new List<int>();
+            int[] esperas = new int[estados.Length];
 
-            for(int i = 0; i < estados.Length; i++)
+            int contador = 0;
+            for (int i = 0; i < estados.Length; i++)
             {
                 if (estados[i] == 1 && !ejecuted[i]) // listo
                 {
                     noEjecutados.Add(i);
+                    esperas[i] = espera[i];
+                    contador++;
                 }
                 if (estados[i] == -1 && tllegada[i] == 0 && !ejecuted[i]) // no ha llegado
                 {
                     noEjecutados.Add(i);
+                    esperas[i] = espera[i];
+                    contador++;
+                }
+            }
+            int maxEspera = mayorEspera(esperas);
+            for(int i = 0; i<noEjecutados.Count; i++)
+            {
+                int proceso = noEjecutados[i];
+                if(espera[proceso] >= maxEspera)
+                {
+                    noEjecutadosEspera.Add(proceso);
                 }
             }
 
-            return noEjecutados;
+            return noEjecutadosEspera;
         }
     }
 }
