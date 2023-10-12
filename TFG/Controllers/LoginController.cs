@@ -23,5 +23,10 @@ namespace TFG.Controllers
         {
             return View("~/Views/Menu/Menu.cshtml");
         }
+
+        public ActionResult Ejercicios()
+        {
+            return View("~/Views/Menu/Ejercicio.cshtml");
+        }
     }
 }

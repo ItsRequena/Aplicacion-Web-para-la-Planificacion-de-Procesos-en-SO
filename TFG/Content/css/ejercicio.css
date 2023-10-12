@@ -1,0 +1,81 @@
+﻿.container {
+    justify-content: center;
+    display: flex;
+}
+#procesos-info {
+    align-items: center;
+    margin: 0 auto;
+    border: 1px solid black;
+    background-color: lightgrey;
+    margin: 10px;
+}
+
+/* Estilo para los divs con id "matriz" */
+#matriz {
+    align-items: center;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+/* Estilo para los divs con id "matriz" */
+#botonAgregar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo para los divs con clase "recuadro-blanco" */
+.recuadro-blanco {
+    margin: 10px;
+    background-color: white;
+    padding: 26px 32px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+/* Estilo para los divs con id "fila" */
+.fila {
+    display: flex;
+    justify-content: center;
+    /*clear: both;  Asegura que los divs "fila" estén uno debajo del otro */
+}
+
+
+/* SECCION DE FICHAS */
+.ficha {
+    margin: 10px; 
+    color: white;
+    padding: 14px 28px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.fichaEjecucion {
+    background-color: #007bff;
+}
+.fichaEjecucion:hover {
+    background: #0b7dda;
+}
+
+.fichaDisco {
+    background-color: #04AA6D;
+}
+.fichaDisco:hover {
+    background-color: #46a049;
+}
+
+.fichaListo {
+    background-color: #ff9800;
+}
+.fichaListo:hover {
+    background: #e68a00;
+}
+
+.fichaTerminado {
+    background-color: #f44336;
+}
+.fichaTerminado:hover {
+    background: #da190b;
+}

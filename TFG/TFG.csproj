@@ -247,6 +247,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\ejercicio.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Data\BBDD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -275,6 +276,7 @@
       <DependentUpon>BBDD.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Custom\ejercicio.js" />
     <Content Include="Scripts\Custom\index.js" />
     <Content Include="Scripts\Custom\Menu.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -301,6 +303,7 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Menu\Menu.cshtml" />
+    <Content Include="Views\Menu\Ejercicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

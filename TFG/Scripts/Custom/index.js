@@ -22,7 +22,7 @@ function restoreTextP(element) {
 }
 
 $('#access').click(function () {
-    console.log("DENTRO");
+    console.log("access");
     // Redireccionar a la nueva vista
     $.ajax({
         url: '/Login/Menu',
@@ -31,6 +31,20 @@ $('#access').click(function () {
             // Manejar la respuesta si es necesario
             console.log("DENTRO DEL AJAX");
             window.location.href = '/Login/Menu';
+        }
+    });
+});
+
+$('#drag').click(function () {
+    console.log("drag");
+    // Redireccionar a la nueva vista
+    $.ajax({
+        url: '/Login/Ejercicios',
+        method: 'GET',
+        success: function (data) {
+            // Manejar la respuesta si es necesario
+            console.log("DENTRO DEL AJAX");
+            window.location.href = '/Login/Ejercicios';
         }
     });
 });

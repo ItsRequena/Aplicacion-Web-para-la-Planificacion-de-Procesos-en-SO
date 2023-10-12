@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Ejercicio";
+    ViewData["Title"] = "Planificación de Procesos";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" containt="width=device-width" />
+    <title>Menu Planificacion de Procesos URJC</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/css/ejercicio.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>DRAG & DROP</h1>
+        </div>
+    </div>
+
+    <!-- Información de Procesos -->
+    <div class="container">
+        <div class="row">
+            <div id="procesos-info">
+                <h4>Proceso 1</h4>
+                <p>Tiempo de llegada: 0 segundos</p>
+                <p>Ráfagas: 20 CPU - 10 Disco - 20 CPU</p>
+            </div>
+            <div id="procesos-info">
+                <h4>Proceso 2</h4>
+                <p>Tiempo de llegada: 10 segundos</p>
+                <p>Ráfagas: 10 CPU - 20 Disco - 20 CPU</p>
+            </div>
+            <!-- Agrega información de otros procesos aquí -->
+        </div>
+    </div>
+
+    <!-- Matriz de Recuadros Blancos -->
+    <div class="container" id="matriz">
+            <div class="row">
+                <div class="col-md-10">
+                    @for (int i = 0; i < 2; i++)
+                    {
+                        <div class="fila">
+                            @for (int j = 0; j < 8; j++)
+                            {
+                                <div class="recuadro-blanco" id="recuadro-blanco-@i-@j"></div>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="col-md-2" id="botonAgregar">
+                    <!-- Botón para agregar columna -->
+                    <button id="agregar-columna" onclick="agregarColumna()">+</button>
+                </div>
+            </div>
+    </div>
+
+    <!-- Fichas (E, D, L, T) -->
+    <div class="container">
+        <div class="row">
+            <div class="fila">
+                <div class="ficha fichaEjecucion" id="Ejecucion" draggable="true">E</div>
+                <div class="ficha fichaDisco" id="Disco" draggable="true">D</div>
+                <div class="ficha fichaListo" id="Listo" draggable="true">L</div>
+                <div class="ficha fichaTerminado" id="Terminado" draggable="true">T</div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/Scripts/Custom/ejercicio.js"></script>
+</body>
+</html>
