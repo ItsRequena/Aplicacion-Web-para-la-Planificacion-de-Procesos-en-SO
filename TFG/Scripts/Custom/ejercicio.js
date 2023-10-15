@@ -11,6 +11,8 @@ var terminado = false;
 var matriz = [];
 
 var elementoDiv;
+var contadorColumnas = 8;
+
 $(document).ready(function () {
     inicializarDragDropsFichas();
     inicializarDragDropsMatriz();
@@ -162,55 +164,214 @@ function inicializarDragDropsMatriz() {
                 }
                 if (disco)
                 {
+                    // Eliminamos el contenido del recuadro de donde viene la anterior ficha
+                    if (fichaInterna) {
+                        const contenedorDiv = elementoDiv;
+                        while (contenedorDiv.firstChild) {
+                            contenedorDiv.removeChild(contenedorDiv.firstChild);
+                        }
+                    }
                     const fichaDisco = document.querySelector('#Disco');
+
+                    // Clona la ficha y configura el estilo
                     const fichaClonada = document.getElementById('Disco').cloneNode(true);
+                    //Añadimos icono x
+                    const eliminarTexto = document.createElement('h3');
+                    eliminarTexto.className = 'eliminar-texto';
+                    eliminarTexto.textContent = 'x';
+                    fichaDisco.appendChild(eliminarTexto);
+
+                    //Configuramos caracteristicas de la ficha interna
+                    fichaDisco.addEventListener('mouseenter', () => {
+                        const eliminarTexto = fichaDisco.querySelector('.eliminar-texto');
+                        eliminarTexto.style.display = 'block';
+                    });
+                    fichaDisco.addEventListener('mouseleave', () => {
+                        const eliminarTexto = fichaDisco.querySelector('.eliminar-texto');
+                        eliminarTexto.style.display = 'none';
+                    });
+                    fichaDisco.addEventListener('dblclick', () => {
+                        const contenedorDiv = fichaDisco.parentElement;
+                        while (contenedorDiv.firstChild) {
+                            contenedorDiv.removeChild(contenedorDiv.firstChild);
+                        }
+                    });
+                    fichaDisco.addEventListener('dragstart', e => {
+                        const eliminarTexto = fichaDisco.querySelector('.eliminar-texto');
+                        eliminarTexto.style.display = 'none';
+                        disco = true;
+                        elementoDiv = fichaDisco.parentElement;
+                        fichaInterna = true;
+                    });
+                    fichaDisco.addEventListener('dragend', e => {
+                        disco = false;
+                        fichaInterna = false;
+                    });
+
+
+                    // Regresamos la copia original al punto inicial
                     contenedorFichasDisco.appendChild(fichaClonada);
 
+                    // Renombramos el id de la ficha y lo introducimos en el recuadro
                     fichaDisco.id = "DiscoIn";
-                    fichaDisco.classList.add('cruz-roja');
-
                     while (fragmento.firstChild) {
                         fragmento.removeChild(fragmento.firstChild);
                     }
 
                     fragmento.appendChild(fichaDisco);
+
+                    // Configuramos de nuevo la ficha disco
                     inicializarFichaDisco();
                 }
                 if (listo)
                 {
+
+                    // Eliminamos el contenido del recuadro de donde viene la anterior ficha
+                    if (fichaInterna) {
+                        const contenedorDiv = elementoDiv;
+                        while (contenedorDiv.firstChild) {
+                            contenedorDiv.removeChild(contenedorDiv.firstChild);
+                        }
+                    }
                     const fichaListo = document.querySelector('#Listo');
+
+                    // Clona la ficha y configura el estilo
                     const fichaClonada = document.getElementById('Listo').cloneNode(true);
+                    //Añadimos icono x
+                    const eliminarTexto = document.createElement('h3');
+                    eliminarTexto.className = 'eliminar-texto';
+                    eliminarTexto.textContent = 'x';
+                    fichaListo.appendChild(eliminarTexto);
+
+                    //Configuramos caracteristicas de la ficha interna
+                    fichaListo.addEventListener('mouseenter', () => {
+                        const eliminarTexto = fichaListo.querySelector('.eliminar-texto');
+                        eliminarTexto.style.display = 'block';
+                    });
+                    fichaListo.addEventListener('mouseleave', () => {
+                        const eliminarTexto = fichaListo.querySelector('.eliminar-texto');
+                        eliminarTexto.style.display = 'none';
+                    });
+                    fichaListo.addEventListener('dblclick', () => {
+                        const contenedorDiv = fichaListo.parentElement;
+                        while (contenedorDiv.firstChild) {
+                            contenedorDiv.removeChild(contenedorDiv.firstChild);
+                        }
+                    });
+                    fichaListo.addEventListener('dragstart', e => {
+                        const eliminarTexto = fichaListo.querySelector('.eliminar-texto');
+                        eliminarTexto.style.display = 'none';
+                        listo = true;
+                        elementoDiv = fichaListo.parentElement;
+                        fichaInterna = true;
+                    });
+                    fichaListo.addEventListener('dragend', e => {
+                        listo = false;
+                        fichaInterna = false;
+                    });
+
+
+                    // Regresamos la copia original al punto inicial
                     contenedorFichasListo.appendChild(fichaClonada);
 
+                    // Renombramos el id de la ficha y lo introducimos en el recuadro
                     fichaListo.id = "ListoIn";
-                    fichaListo.classList.add('cruz-roja');
-
                     while (fragmento.firstChild) {
                         fragmento.removeChild(fragmento.firstChild);
                     }
 
                     fragmento.appendChild(fichaListo);
+
+                    // Configuramos de nuevo la ficha listo
                     inicializarFichaListo();
                 }
                 if (terminado)
                 {
+
+                    // Eliminamos el contenido del recuadro de donde viene la anterior ficha
+                    if (fichaInterna) {
+                        const contenedorDiv = elementoDiv;
+                        while (contenedorDiv.firstChild) {
+                            contenedorDiv.removeChild(contenedorDiv.firstChild);
+                        }
+                    }
                     const fichaTerminado = document.querySelector('#Terminado');
+
+                    // Clona la ficha y configura el estilo
                     const fichaClonada = document.getElementById('Terminado').cloneNode(true);
+                    //Añadimos icono x
+                    const eliminarTexto = document.createElement('h3');
+                    eliminarTexto.className = 'eliminar-texto';
+                    eliminarTexto.textContent = 'x';
+                    fichaTerminado.appendChild(eliminarTexto);
+
+                    //Configuramos caracteristicas de la ficha interna
+                    fichaTerminado.addEventListener('mouseenter', () => {
+                        const eliminarTexto = fichaTerminado.querySelector('.eliminar-texto');
+                        eliminarTexto.style.display = 'block';
+                    });
+                    fichaTerminado.addEventListener('mouseleave', () => {
+                        const eliminarTexto = fichaTerminado.querySelector('.eliminar-texto');
+                        eliminarTexto.style.display = 'none';
+                    });
+                    fichaTerminado.addEventListener('dblclick', () => {
+                        const contenedorDiv = fichaTerminado.parentElement;
+                        while (contenedorDiv.firstChild) {
+                            contenedorDiv.removeChild(contenedorDiv.firstChild);
+                        }
+                    });
+                    fichaTerminado.addEventListener('dragstart', e => {
+                        const eliminarTexto = fichaTerminado.querySelector('.eliminar-texto');
+                        eliminarTexto.style.display = 'none';
+                        terminado = true;
+                        elementoDiv = fichaTerminado.parentElement;
+                        fichaInterna = true;
+                    });
+                    fichaTerminado.addEventListener('dragend', e => {
+                        terminado = false;
+                        fichaInterna = false;
+                    });
+
+
+                    // Regresamos la copia original al punto inicial
                     contenedorFichasTerminado.appendChild(fichaClonada);
 
+                    // Renombramos el id de la ficha y lo introducimos en el recuadro
                     fichaTerminado.id = "TerminadoIn";
-                    fichaTerminado.classList.add('cruz-roja');
-
                     while (fragmento.firstChild) {
                         fragmento.removeChild(fragmento.firstChild);
                     }
 
                     fragmento.appendChild(fichaTerminado);
+
+                    // Configuramos de nuevo la ficha terminado
                     inicializarFichaTerminado();
                 }
             });
         }
     }
+}
+
+// Funcion para agregar columnas (recuadros blancos)
+function agregarColumna() {
+    for (var i = 0; i < 2; i++) {
+
+        // Crear un elemento div
+        var nuevoDiv = document.createElement("div");
+        // Agregar la clase 'recuadro-blanco' al elemento
+        nuevoDiv.classList.add("recuadro-blanco");
+        nuevoDiv.id = "recuadro-blanco-" + i + "-" + contadorColumnas;
+
+        var id = "fila-" + i;
+        // Obtener el elemento 'fila' por su id
+        var fila = document.getElementById(id);
+
+        console.log(fila);
+
+        // Agregar el elemento div como un hijo de 'fila'
+        fila.appendChild(nuevoDiv);
+    }
+    contadorColumnas++;
 }
 
 
