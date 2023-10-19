@@ -2,6 +2,7 @@
     justify-content: center;
     display: flex;
 }
+
 #procesos-info {
     align-items: center;
     margin: 0 auto;
@@ -33,6 +34,12 @@
     background-color: #fff; /* Color de fondo */
     border: 1px solid #ccc; /* Borde opcional */
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Propiedad para la sombra */
+    border-radius: 5px;
+    height: 26px;
+    width: 32px;
+    display: flex; /* Utiliza display flex para centrar contenido */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
 }
 
 /* Estilo para los divs con id "fila" */
@@ -45,7 +52,7 @@
 
 /* SECCION DE FICHAS */
 .ficha {
-    margin: 10px; 
+    margin: 10px;
     color: white;
     padding: 14px 28px;
     cursor: pointer;
@@ -55,30 +62,34 @@
 .fichaEjecucion {
     background-color: #007bff;
 }
-.fichaEjecucion:hover {
-    background: #0b7dda;
-}
+
+    .fichaEjecucion:hover {
+        background: #0b7dda;
+    }
 
 .fichaDisco {
     background-color: #04AA6D;
 }
-.fichaDisco:hover {
-    background-color: #46a049;
-}
+
+    .fichaDisco:hover {
+        background-color: #46a049;
+    }
 
 .fichaListo {
     background-color: #ff9800;
 }
-.fichaListo:hover {
-    background: #e68a00;
-}
+
+    .fichaListo:hover {
+        background: #e68a00;
+    }
 
 .fichaTerminado {
     background-color: #f44336;
 }
-.fichaTerminado:hover {
-    background: #da190b;
-}
+
+    .fichaTerminado:hover {
+        background: #da190b;
+    }
 
 .eliminar-texto {
     position: absolute;

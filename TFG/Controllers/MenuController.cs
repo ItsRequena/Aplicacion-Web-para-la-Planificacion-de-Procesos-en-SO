@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace TFG.Controllers
 {
@@ -12,7 +13,7 @@ namespace TFG.Controllers
             return View();
         }
 
-        public Dictionary<int, List<string>> FCFS(List<int> tllegada, List<List<int>> listaProcesos)
+        public ActionResult FCFS(List<int> tllegada, List<List<int>> listaProcesos)
         {
             // ESTO ES PARA LOS TIEMPO DE ESPERA
             List<int> tllegadaINICIAL = new List<int>();
@@ -323,7 +324,19 @@ namespace TFG.Controllers
                 double y = getTiempoMedio("E", tllegadaINICIAL[i], solucion[i]);
             }
 
-            return solucion;
+            // Crea un nuevo objeto JSON que sea serializable
+            var objetoSerializable = new Dictionary<string, List<string>>();
+            foreach (var kvp in solucion)
+            {
+                objetoSerializable[kvp.Key.ToString()] = kvp.Value;
+            }
+
+            // Serializa el objeto a JSON
+            //string data = JsonConvert.SerializeObject(objetoSerializable);
+
+            return Json(objetoSerializable, JsonRequestBehavior.AllowGet);
+
+            //return solucion;
         }
 
 

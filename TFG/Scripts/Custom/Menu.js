@@ -170,17 +170,17 @@ function calcular() {
     for (let i = 0; i < numProcesosInput.value; i++) {
 
         // Obtenemos el tiempo de llegada del proceso
-        var llegada = document.getElementById(`tllegada${i+1}`);
+        var llegada = document.getElementById(`tllegada${i + 1}`);
         console.log("tLLegada: " + llegada.value)
         tllegada.push(llegada.value);
 
         // Obtenemos las rafagas del proceso
-        var numeroRafagas = document.getElementById(`numRafagas${i+1}`);
+        var numeroRafagas = document.getElementById(`numRafagas${i + 1}`);
         console.log("numero rafagas: " + numeroRafagas.value);
 
         var rafagas = [];
         for (let j = 1; j <= numeroRafagas.value; j++) {
-            var rafaga = document.getElementById(`tProceso${i+1}Rafaga${j}`);
+            var rafaga = document.getElementById(`tProceso${i + 1}Rafaga${j}`);
             console.log("rafaga" + j + ": " + rafaga.value);
             rafagas.push(rafaga.value);
         }
@@ -200,11 +200,22 @@ function calcular() {
         $.ajax({
             url: '/Menu/FCFS',
             data: JSON.stringify(data),
-            async: false,
+            async: true,
             method: 'POST',
             contentType: 'application/json',
             success: function (data) {
-
+                console.log("------------");
+                console.log(data);
+                var contenido = "";
+                for (var clave in data) {
+                    if (data.hasOwnProperty(clave)) {
+                        console.log("Clave: " + clave);
+                        console.log("Lista: " + data[clave].join(", ")); // Convierte la lista en una cadena y la imprime
+                        contenido += data[clave].join(", ") + "\n";
+                    }
+                }
+                document.getElementById("mostrarSolucion").value = contenido;
+                console.log("------------");
             },
             error: function () {
 
