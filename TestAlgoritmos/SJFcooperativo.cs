@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using TFG.Controllers;
 
 namespace TestAlgoritmos
@@ -88,8 +89,24 @@ namespace TestAlgoritmos
             rafagas.Add(proceso3);
 
 
-            // ALGORTIMO 
-            Dictionary<int, List<string>> resultado = _menuController.SJFcooperativo(tiemposLLegada, rafagas);
+            // ALGORTIMO (OBTENER RESULTADO)
+            Dictionary<int, List<string>> solucionAlgoritmo = new Dictionary<int, List<string>>();
+            ActionResult resultado = _menuController.SJFcooperativo(tiemposLLegada, rafagas);
+
+            var jsonResult = resultado as JsonResult;
+            if (jsonResult != null)
+            {
+                var objetoSerializable = jsonResult.Data as Dictionary<string, List<string>>;
+                if (objetoSerializable != null)
+                {
+                    foreach (var kvp in objetoSerializable)
+                    {
+                        int key = int.Parse(kvp.Key);
+                        List<string> value = kvp.Value;
+                        solucionAlgoritmo.Add(key, value);
+                    }
+                }
+            }
 
             // SOLUCION
             Dictionary<int, List<string>> solucion = new Dictionary<int, List<string>>();
@@ -109,7 +126,7 @@ namespace TestAlgoritmos
             solucion.Add(1, solucion2);
             solucion.Add(2, solucion3);
 
-            Assert.IsTrue(comparation(resultado, solucion));
+            Assert.IsTrue(comparation(solucionAlgoritmo, solucion));
 
         }
 
@@ -156,8 +173,24 @@ namespace TestAlgoritmos
             rafagas.Add(proceso4);
 
 
-            // ALGORTIMO 
-            Dictionary<int, List<string>> resultado = _menuController.SJFcooperativo(tiemposLLegada, rafagas);
+            // ALGORTIMO (OBTENER RESULTADO)
+            Dictionary<int, List<string>> solucionAlgoritmo = new Dictionary<int, List<string>>();
+            ActionResult resultado = _menuController.SJFcooperativo(tiemposLLegada, rafagas);
+
+            var jsonResult = resultado as JsonResult;
+            if (jsonResult != null)
+            {
+                var objetoSerializable = jsonResult.Data as Dictionary<string, List<string>>;
+                if (objetoSerializable != null)
+                {
+                    foreach (var kvp in objetoSerializable)
+                    {
+                        int key = int.Parse(kvp.Key);
+                        List<string> value = kvp.Value;
+                        solucionAlgoritmo.Add(key, value);
+                    }
+                }
+            }
 
             // SOLUCION
             Dictionary<int, List<string>> solucion = new Dictionary<int, List<string>>();
@@ -181,7 +214,85 @@ namespace TestAlgoritmos
             solucion.Add(2, solucion3);
             solucion.Add(3, solucion4);
 
-            Assert.IsTrue(comparation(resultado, solucion));
+            Assert.IsTrue(comparation(solucionAlgoritmo, solucion));
+
+        }
+
+
+        [TestMethod]
+        public void TestMethod3()
+        {
+            // TIEMPOS DE LLEGADA
+            List<int> tiemposLLegada = new List<int>();
+            // Proceso 1
+            tiemposLLegada.Add(0);
+            // Proceso 2
+            tiemposLLegada.Add(10);
+            // Proceso 3
+            tiemposLLegada.Add(20);
+
+
+            // RAFAGAS
+            List<List<int>> rafagas = new List<List<int>>();
+            // Proceso 1
+            List<int> proceso1 = new List<int>();
+            proceso1.Add(50);
+            proceso1.Add(20);
+            proceso1.Add(30);
+            rafagas.Add(proceso1);
+            // Proceso 2
+            List<int> proceso2 = new List<int>();
+            proceso2.Add(30);
+            proceso2.Add(10);
+            proceso2.Add(20);
+            rafagas.Add(proceso2);
+            // Proceso 3
+            List<int> proceso3 = new List<int>();
+            proceso3.Add(10);
+            proceso3.Add(20);
+            proceso3.Add(40);
+            rafagas.Add(proceso3);
+
+
+            // ALGORTIMO (OBTENER RESULTADO)
+            Dictionary<int, List<string>> solucionAlgoritmo = new Dictionary<int, List<string>>();
+            ActionResult resultado = _menuController.SJFcooperativo(tiemposLLegada, rafagas);
+
+            var jsonResult = resultado as JsonResult;
+            if (jsonResult != null)
+            {
+                var objetoSerializable = jsonResult.Data as Dictionary<string, List<string>>;
+                if (objetoSerializable != null)
+                {
+                    foreach (var kvp in objetoSerializable)
+                    {
+                        int key = int.Parse(kvp.Key);
+                        List<string> value = kvp.Value;
+                        solucionAlgoritmo.Add(key, value);
+                    }
+                }
+            }
+
+            // SOLUCION
+            Dictionary<int, List<string>> solucion = new Dictionary<int, List<string>>();
+            List<string> solucion1 = new List<string>();
+            List<string> solucion2 = new List<string>();
+            List<string> solucion3 = new List<string>();
+            List<string> solucion4 = new List<string>();
+            string[] solucionProceso1 = { "E", "E", "E", "E", "E", "D", "D", "L", "L", "E", "E", "E", "T", "-", "-", "-", "-", "-", "-" };
+            string[] solucionProceso2 = { "-", "L", "L", "L", "L", "L", "E", "E", "E", "D", "L", "L", "E", "E", "T", "-", "-", "-", "-" };
+            string[] solucionProceso3 = { "-", "-", "L", "L", "L", "E", "D", "D", "L", "L", "L", "L", "L", "L", "E", "E", "E", "E", "T" };
+            for (int i = 0; i < solucionProceso1.Count(); i++)
+            {
+                solucion1.Add(solucionProceso1[i]);
+                solucion2.Add(solucionProceso2[i]);
+                solucion3.Add(solucionProceso3[i]);
+            }
+            solucion.Add(0, solucion1);
+            solucion.Add(1, solucion2);
+            solucion.Add(2, solucion3);
+
+            Assert.IsTrue(comparation(solucionAlgoritmo, solucion));
 
         }
 

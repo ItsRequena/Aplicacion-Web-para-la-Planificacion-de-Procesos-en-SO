@@ -1,3 +1,4 @@
+using System.Web.Mvc;
 using TFG.Controllers;
 
 namespace TestAlgoritmos
@@ -77,8 +78,24 @@ namespace TestAlgoritmos
             rafagas.Add(proceso2);
 
 
-            // ALGORTIMO 
-            Dictionary<int, List<string>> resultado = _menuController.FCFS(tiemposLLegada, rafagas);
+            // ALGORTIMO (OBTENER RESULTADO)
+            Dictionary<int, List<string>> solucionAlgoritmo = new Dictionary<int, List<string>>();
+            ActionResult resultado = _menuController.FCFS(tiemposLLegada, rafagas);
+
+            var jsonResult = resultado as JsonResult;
+            if (jsonResult != null)
+            {
+                var objetoSerializable = jsonResult.Data as Dictionary<string, List<string>>;
+                if (objetoSerializable != null)
+                {
+                    foreach (var kvp in objetoSerializable)
+                    {
+                        int key = int.Parse(kvp.Key);
+                        List<string> value = kvp.Value;
+                        solucionAlgoritmo.Add(key, value);
+                    }
+                }
+            }
 
             // SOLUCION
             Dictionary<int,List<string>> solucion = new Dictionary<int, List<string>>();
@@ -94,7 +111,7 @@ namespace TestAlgoritmos
             solucion.Add(0, solucion1);
             solucion.Add(1, solucion2);
 
-            Assert.IsTrue(comparation(resultado,solucion));
+            Assert.IsTrue(comparation(solucionAlgoritmo, solucion));
             
         }
 
@@ -135,8 +152,24 @@ namespace TestAlgoritmos
             rafagas.Add(proceso3);
 
 
-            // ALGORTIMO 
-            Dictionary<int, List<string>> resultado = _menuController.FCFS(tiemposLLegada, rafagas);
+            // ALGORTIMO (OBTENER RESULTADO)
+            Dictionary<int, List<string>> solucionAlgoritmo = new Dictionary<int, List<string>>();
+            ActionResult resultado = _menuController.FCFS(tiemposLLegada, rafagas);
+
+            var jsonResult = resultado as JsonResult;
+            if (jsonResult != null)
+            {
+                var objetoSerializable = jsonResult.Data as Dictionary<string, List<string>>;
+                if (objetoSerializable != null)
+                {
+                    foreach (var kvp in objetoSerializable)
+                    {
+                        int key = int.Parse(kvp.Key);
+                        List<string> value = kvp.Value;
+                        solucionAlgoritmo.Add(key, value);
+                    }
+                }
+            }
 
             // SOLUCION
             Dictionary<int, List<string>> solucion = new Dictionary<int, List<string>>();
@@ -156,7 +189,7 @@ namespace TestAlgoritmos
             solucion.Add(1, solucion2);
             solucion.Add(2, solucion3);
 
-            Assert.IsTrue(comparation(resultado, solucion));
+            Assert.IsTrue(comparation(solucionAlgoritmo, solucion));
 
         }
 
@@ -195,8 +228,24 @@ namespace TestAlgoritmos
             rafagas.Add(proceso3);
 
 
-            // ALGORTIMO 
-            Dictionary<int, List<string>> resultado = _menuController.FCFS(tiemposLLegada, rafagas);
+            // ALGORTIMO (OBTENER RESULTADO)
+            Dictionary<int, List<string>> solucionAlgoritmo = new Dictionary<int, List<string>>();
+            ActionResult resultado = _menuController.FCFS(tiemposLLegada, rafagas);
+
+            var jsonResult = resultado as JsonResult;
+            if (jsonResult != null)
+            {
+                var objetoSerializable = jsonResult.Data as Dictionary<string, List<string>>;
+                if (objetoSerializable != null)
+                {
+                    foreach (var kvp in objetoSerializable)
+                    {
+                        int key = int.Parse(kvp.Key);
+                        List<string> value = kvp.Value;
+                        solucionAlgoritmo.Add(key, value);
+                    }
+                }
+            }
 
             // SOLUCION
             Dictionary<int, List<string>> solucion = new Dictionary<int, List<string>>();
@@ -216,7 +265,7 @@ namespace TestAlgoritmos
             solucion.Add(1, solucion2);
             solucion.Add(2, solucion3);
 
-            Assert.IsTrue(comparation(resultado, solucion));
+            Assert.IsTrue(comparation(solucionAlgoritmo, solucion));
 
         }
     }

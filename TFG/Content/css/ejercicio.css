@@ -13,10 +13,11 @@
 
 /* Estilo para los divs con id "matriz" */
 #matriz {
-    align-items: center;
     margin: 0 auto;
-    border: 1px solid black;
-    border-radius: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Propiedad para la sombra */
+    overflow: auto; /* Agrega una barra de desplazamiento si es necesario */
 }
 
 /* Estilo para los divs con id "matriz" */
@@ -29,14 +30,14 @@
 /* Estilo para los divs con clase "recuadro-blanco" */
 .recuadro-blanco {
     margin: 10px;
-    padding: 26px 32px;
+    padding: 24px 30px;
     cursor: pointer;
     background-color: #fff; /* Color de fondo */
     border: 1px solid #ccc; /* Borde opcional */
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Propiedad para la sombra */
     border-radius: 5px;
-    height: 26px;
-    width: 32px;
+    height: 24px;
+    width: 30px;
     display: flex; /* Utiliza display flex para centrar contenido */
     justify-content: center; /* Centra horizontalmente el contenido */
     align-items: center; /* Centra verticalmente el contenido */
@@ -45,12 +46,18 @@
 /* Estilo para los divs con id "fila" */
 .fila {
     display: flex;
-    justify-content: center;
     /*clear: both;  Asegura que los divs "fila" estén uno debajo del otro */
 }
 
 
 /* SECCION DE FICHAS */
+#contenedorFichas {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Propiedad para la sombra */
+    width: 33%;
+}
+
 .ficha {
     margin: 10px;
     color: white;
@@ -97,4 +104,13 @@
     color: red; /* Color de texto rojo */
     display: none; /* Oculta el texto de eliminación inicialmente */
     /* Otros estilos para el texto de eliminación */
+}
+
+.boton-estilizado {
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
 }

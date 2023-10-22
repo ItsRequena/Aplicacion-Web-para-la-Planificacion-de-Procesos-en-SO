@@ -39,24 +39,22 @@
 
     <!-- Matriz de Recuadros Blancos -->
     <div class="container" id="matriz">
-            <div class="row">
-                <div class="col-md-10">
-                    @for (int i = 0; i < 2; i++)
-                    {
-                        <div class="fila" id="fila-@i">
-                            @for (int j = 0; j < 8; j++)
-                            {
-                                <div class="recuadro-blanco" id="recuadro-blanco-@i-@j"></div>
-                            }
-                        </div>
-                    }
-                </div>
-                <div class="col-md-2" id="botonAgregar">
-                    <!-- Botón para agregar columna -->
-                    <button id="agregar-columna" onclick="agregarColumna()">+</button>
-                </div>
+        <div class="row">
+            <div class="text-center">
+                @for (int i = 0; i < 2; i++)
+                {
+                    <div class="fila" id="fila-@i">
+                        @for (int j = 0; j < 8; j++)
+                        {
+                            <div class="recuadro-blanco" id="recuadro-blanco-@i-@j"></div>
+                        }
+                    </div>
+                }
+                <button id="agregar-columna" onclick="agregarColumna()">+</button>
             </div>
+        </div>
     </div>
+    <br />
 
     <!-- Fichas (E, D, L, T) -->
     <div class="container">
@@ -77,10 +75,20 @@
             </div>
         </div>
     </div>
+    <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <button id="Calcular" class="boton-estilizado" onclick="resolver()">RESOLVER</button>
+            </div>
+        </div>
+    </div>
 
 
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="~/Scripts/Custom/ejercicio.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

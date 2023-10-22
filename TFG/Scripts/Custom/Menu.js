@@ -230,7 +230,18 @@ function calcular() {
             method: 'POST',
             contentType: 'application/json',
             success: function (data) {
-
+                console.log("------------");
+                console.log(data);
+                var contenido = "";
+                for (var clave in data) {
+                    if (data.hasOwnProperty(clave)) {
+                        console.log("Clave: " + clave);
+                        console.log("Lista: " + data[clave].join(", ")); // Convierte la lista en una cadena y la imprime
+                        contenido += data[clave].join(", ") + "\n";
+                    }
+                }
+                document.getElementById("mostrarSolucion").value = contenido;
+                console.log("------------");
             },
             error: function () {
 
@@ -245,7 +256,18 @@ function calcular() {
             method: 'POST',
             contentType: 'application/json',
             success: function (data) {
-                console.log("INNNN!");
+                console.log("------------");
+                console.log(data);
+                var contenido = "";
+                for (var clave in data) {
+                    if (data.hasOwnProperty(clave)) {
+                        console.log("Clave: " + clave);
+                        console.log("Lista: " + data[clave].join(", ")); // Convierte la lista en una cadena y la imprime
+                        contenido += data[clave].join(", ") + "\n";
+                    }
+                }
+                document.getElementById("mostrarSolucion").value = contenido;
+                console.log("------------");
             },
             error: function () {
 
@@ -265,7 +287,18 @@ function calcular() {
             method: 'POST',
             contentType: 'application/json',
             success: function (data) {
-
+                console.log("------------");
+                console.log(data);
+                var contenido = "";
+                for (var clave in data) {
+                    if (data.hasOwnProperty(clave)) {
+                        console.log("Clave: " + clave);
+                        console.log("Lista: " + data[clave].join(", ")); // Convierte la lista en una cadena y la imprime
+                        contenido += data[clave].join(", ") + "\n";
+                    }
+                }
+                document.getElementById("mostrarSolucion").value = contenido;
+                console.log("------------");
             },
             error: function () {
 

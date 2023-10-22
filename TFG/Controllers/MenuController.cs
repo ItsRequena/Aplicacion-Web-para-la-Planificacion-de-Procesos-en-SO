@@ -340,7 +340,7 @@ namespace TFG.Controllers
         }
 
 
-        public Dictionary<int, List<string>> SJFcooperativo(List<int> tllegada, List<List<int>> listaProcesos)
+        public ActionResult SJFcooperativo(List<int> tllegada, List<List<int>> listaProcesos)
         {
             // ESTO ES PARA LOS TIEMPO DE ESPERA
             List<int> tllegadaINICIAL = new List<int>();
@@ -619,11 +619,23 @@ namespace TFG.Controllers
                 double y = getTiempoMedio("E", tllegadaINICIAL[i], solucion[i]);
             }
 
-            return solucion;
+            // Crea un nuevo objeto JSON que sea serializable
+            var objetoSerializable = new Dictionary<string, List<string>>();
+            foreach (var kvp in solucion)
+            {
+                objetoSerializable[kvp.Key.ToString()] = kvp.Value;
+            }
+
+            // Serializa el objeto a JSON
+            //string data = JsonConvert.SerializeObject(objetoSerializable);
+
+            return Json(objetoSerializable, JsonRequestBehavior.AllowGet);
+
+            //return solucion;
         }
 
 
-        public Dictionary<int, List<string>> SJFapropiativo(List<int> tllegada, List<List<int>> listaProcesos)
+        public ActionResult SJFapropiativo(List<int> tllegada, List<List<int>> listaProcesos)
 
         {
             // ESTO ES PARA LOS TIEMPO DE ESPERA
@@ -911,11 +923,23 @@ namespace TFG.Controllers
                 double y = getTiempoMedio("E", tllegadaINICIAL[i], solucion[i]);
             }
 
-            return solucion;
+            // Crea un nuevo objeto JSON que sea serializable
+            var objetoSerializable = new Dictionary<string, List<string>>();
+            foreach (var kvp in solucion)
+            {
+                objetoSerializable[kvp.Key.ToString()] = kvp.Value;
+            }
+
+            // Serializa el objeto a JSON
+            //string data = JsonConvert.SerializeObject(objetoSerializable);
+
+            return Json(objetoSerializable, JsonRequestBehavior.AllowGet);
+
+            //return solucion;
         }
 
 
-        public Dictionary<int, List<string>> RR(int cuanto, List<int> tllegada, List<List<int>> listaProcesos)
+        public ActionResult RR(int cuanto, List<int> tllegada, List<List<int>> listaProcesos)
         {
             // ESTO ES PARA LOS TIEMPO DE ESPERA
             List<int> tllegadaINICIAL = new List<int>();
@@ -1334,7 +1358,19 @@ namespace TFG.Controllers
                 double y = getTiempoMedio("E", tllegadaINICIAL[i], solucion[i]);
             }
 
-            return solucion;
+            // Crea un nuevo objeto JSON que sea serializable
+            var objetoSerializable = new Dictionary<string, List<string>>();
+            foreach (var kvp in solucion)
+            {
+                objetoSerializable[kvp.Key.ToString()] = kvp.Value;
+            }
+
+            // Serializa el objeto a JSON
+            //string data = JsonConvert.SerializeObject(objetoSerializable);
+
+            return Json(objetoSerializable, JsonRequestBehavior.AllowGet);
+
+            //return solucion;
         }
 
         // Funcion para obtener el tiempo medio de espera/ejecucion de un proceso
