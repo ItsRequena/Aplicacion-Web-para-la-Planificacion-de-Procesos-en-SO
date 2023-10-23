@@ -16,7 +16,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1>DRAG & DROP</h1>
+            <h1 class="text-center">DRAG & DROP</h1>
         </div>
     </div>
 
@@ -24,12 +24,12 @@
     <div class="container">
         <div class="row">
             <div id="procesos-info">
-                <h4>Proceso 1</h4>
+                <h4 class="text-center">Proceso 1</h4>
                 <p>Tiempo de llegada: 0 segundos</p>
                 <p>Ráfagas: 20 CPU - 10 Disco - 20 CPU</p>
             </div>
             <div id="procesos-info">
-                <h4>Proceso 2</h4>
+                <h4 class="text-center">Proceso 2</h4>
                 <p>Tiempo de llegada: 10 segundos</p>
                 <p>Ráfagas: 10 CPU - 20 Disco - 20 CPU</p>
             </div>
@@ -38,20 +38,26 @@
     </div>
 
     <!-- Matriz de Recuadros Blancos -->
-    <div class="container" id="matriz">
-        <div class="row">
-            <div class="text-center">
-                @for (int i = 0; i < 2; i++)
-                {
-                    <div class="fila" id="fila-@i">
-                        @for (int j = 0; j < 8; j++)
+    <div class="row">
+        <div class="col-md-11">
+            <div class="container" id="matriz">
+                <div class="scroll-container">
+                    <div class="content">
+                        @for (int i = 0; i < 2; i++)
                         {
-                            <div class="recuadro-blanco" id="recuadro-blanco-@i-@j"></div>
+                            <div class="fila" id="fila-@i">
+                                @for (int j = 0; j < 8; j++)
+                                {
+                                    <div class="recuadro-blanco" id="recuadro-blanco-@i-@j"></div>
+                                }
+                            </div>
                         }
                     </div>
-                }
-                <button id="agregar-columna" onclick="agregarColumna()">+</button>
+                </div>
             </div>
+        </div>
+        <div class="col-md-1">
+            <button id="agregar-columna" onclick="agregarColumna()">+</button>
         </div>
     </div>
     <br />

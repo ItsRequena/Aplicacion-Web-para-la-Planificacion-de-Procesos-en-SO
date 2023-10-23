@@ -391,7 +391,7 @@ function resolver() {
             recuadro = `recuadro-blanco-${i}-${j}`;
             const elemento = document.querySelector('#' + recuadro);
 
-            const divHijo = elemento.querySelector('div'); // Cambia 'div' al selector adecuado
+            const divHijo = elemento.querySelector('div');
 
             // Obtén el id del div hijo
             if (divHijo) {
@@ -467,17 +467,33 @@ function resolver() {
                     console.log(matriz[i][j]);
                     recuadro = `recuadro-blanco-${i}-${j}`;
                     const elemento = document.querySelector('#' + recuadro);
+                    const divHijo = elemento.querySelector('div');
 
-                    if (matriz[i][j] != data[i][j]) {
+                    if(matriz[i][j] == '-' && data[i][j] == null) {
+                        elemento.style.border = '1px solid #ccc';
+                        elemento.style.boxShadow = '5px 5px 10px rgba(0, 0, 0, 0.2)';
+
+                        if (divHijo) {
+                            divHijo.style.removeProperty('border');
+                        }
+                    }
+                    else if (matriz[i][j] != data[i][j]) {
                         solucion = false;
-
                         elemento.style.border = '1px solid red';
                         elemento.style.boxShadow = '0px 0px 10px rgba(255, 0, 0, 1)';
+
+                        if (divHijo) {
+                            divHijo.style.border = '1px solid red';
+                        }
 
                     }
                     else {
                         elemento.style.border = '1px solid #ccc';
                         elemento.style.boxShadow = '5px 5px 10px rgba(0, 0, 0, 0.2)';
+
+                        if (divHijo) {
+                            divHijo.style.removeProperty('border');
+                        }
                     }
 
                 }

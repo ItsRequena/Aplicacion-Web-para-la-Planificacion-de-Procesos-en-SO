@@ -3,11 +3,17 @@
     display: flex;
 }
 
+p {
+    font-family: monospace;
+}
+
 #procesos-info {
     align-items: center;
     margin: 0 auto;
     border: 1px solid black;
-    background-color: lightgrey;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Propiedad para la sombra */
+    border-radius: 3px;
+    background-color: whitesmoke;
     margin: 10px;
 }
 
@@ -17,7 +23,18 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Propiedad para la sombra */
-    overflow: auto; /* Agrega una barra de desplazamiento si es necesario */
+    overflow: auto;
+}
+
+.scroll-container {
+    overflow-x: auto;
+    white-space: nowrap; /* Evita que los elementos se rompan en varias líneas */
+    padding-bottom: 20px;
+}
+
+.content {
+    display: inline-block; /* Para que el ancho sea el necesario */
+    min-width: 100%; /* Asegura que la barra de desplazamiento siempre esté presente */
 }
 
 /* Estilo para los divs con id "matriz" */
