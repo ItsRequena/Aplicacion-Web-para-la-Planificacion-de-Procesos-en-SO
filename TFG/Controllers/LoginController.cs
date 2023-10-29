@@ -8,15 +8,31 @@ namespace TFG.Controllers
 {
     public class LoginController : Controller
     {
-        public ActionResult Login()
+        public ActionResult index()
         {
-            return View();
+            return View("~/Views/Login/Login.cshtml");
+        }
+
+        public ActionResult Login(string userName, string password)
+        {
+            //proceso de login...
+
+            return View("~/Views/Login/Login.cshtml");
         }
 
 
         public ActionResult Register()
         {
-            return View();
+
+            return View("~/Views/Login/Register.cshtml");
+        }
+
+
+        public ActionResult RegisterUser(string nombre, string apellidos, string userName, string correo, string password)
+        {
+
+
+            return View("~/Views/Login/Register.cshtml");
         }
 
         public ActionResult Menu()

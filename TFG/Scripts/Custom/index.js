@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿const nuevaCuentaLink = document.getElementById("nuevaCuenta");
+
+$(document).ready(function () {
 
 });
 
@@ -21,34 +23,67 @@ function restoreTextP(element) {
     }
 }
 
-$('#access').click(function () {
-    console.log("access");
-    // Redireccionar a la nueva vista
+$('#access').off('click').click(function () {
+    var data = {};
+    data.userName = document.querySelector('#userName');
+    data.password = document.querySelector('#password');
     $.ajax({
-        url: '/Login/Menu',
-        method: 'GET',
+        url: '/Login/Login',
+        data: JSON.stringify(data),
+        async: true,
+        method: 'POST',
+        contentType: 'application/json',
         success: function (data) {
-            // Manejar la respuesta si es necesario
             console.log("DENTRO DEL AJAX");
             window.location.href = '/Login/Menu';
         }
     });
 });
 
-$('#drag').click(function () {
-    console.log("drag");
-    // Redireccionar a la nueva vista
-    $.ajax({
-        url: '/Login/Ejercicios',
-        method: 'GET',
-        success: function (data) {
-            // Manejar la respuesta si es necesario
-            console.log("DENTRO DEL AJAX");
-            window.location.href = '/Login/Ejercicios';
-        }
-    });
+nuevaCuentaLink.addEventListener("click", function (event) {
+    event.preventDefault();
+    window.location.href = "/Login/Register";
 });
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+$('#access').off('click').click(function () {
+    console.log("access");
+    $.ajax({
+        url: '/Login/Menu/',
+        method: 'POST',
+        success: function (data) {
+            console.log("DENTRO DEL AJAX");
+            window.location.href = '/Login/Menu/';
+        }
+    });
+});
+
+
+$('#drag').off('click').click(function () {
+    console.log("drag");
+    $.ajax({
+        url: '/Login/Ejercicios',
+        method: 'POST',
+        success: function (data) {
+            console.log("DENTRO DEL AJAX");
+            //window.location.href = '/Login/Ejercicios';
+        }
+    });
+});
+*/

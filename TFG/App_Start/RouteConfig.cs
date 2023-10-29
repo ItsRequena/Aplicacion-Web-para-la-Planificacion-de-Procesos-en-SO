@@ -16,7 +16,7 @@ namespace TFG
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Login", action = "login", id = UrlParameter.Optional }
+                defaults: new { controller = "Login", action = "index", id = UrlParameter.Optional }
             );
         }
     }

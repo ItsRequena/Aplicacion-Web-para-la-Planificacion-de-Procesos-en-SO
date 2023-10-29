@@ -3,5 +3,64 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Register</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" containt="width=device-width" />
+    <title>Planificacion de Procesos URJC</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+
+            <!-- Icono -->
+            <br />
+            <div class="fadeIn first">
+                <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="200" height="200" />
+            </div>
+            <br />
+            <!-- Registro de campos -->
+            <form method="post">
+                <!-- Nombre y Apellidos-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="fadeIn second">Nombre: </p>
+                        <input type="text" id="nombre" class="fadeIn second" name="nombre" placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <p class="fadeIn second">Apellidos: </p>
+                        <input type="text" id="apellidos" class="fadeIn second" name="apellidos" placeholder="">
+                    </div>
+                </div>
+                <!-- Correo -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="fadeIn second">Nombre de Usuario: </p>
+                        <input type="text" id="userName" class="fadeIn second" name="userName" placeholder="">
+                        <p class="fadeIn third">Correo electrónico: </p>
+                        <input type="text" id="correo" class="fadeIn third" name="correo" placeholder="">
+                    </div>
+                </div>
+                <!-- Contraseña -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="fadeIn third">Contraseña: </p>
+                        <input type="password" id="password" class="fadeIn fourth" name="password" placeholder="">
+                    </div>
+                </div>
+                <!-- Registro -->
+                <input type="button" id="register" class="fadeIn fourth" value="Registrar" onclick="registrar()">
+            </form>
+        </div>
+    </div>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/Scripts/Custom/register.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
 
