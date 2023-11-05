@@ -8,16 +8,16 @@ function registrar() {
     console.log(userName);
     var correo = document.getElementById("correo").value;
     console.log(correo);
-    var pasword = document.getElementById("password").value;
-    console.log(pasword);
-    if (nombre == "" || apellidos == "" || userName == "" || correo == "" || pasword == "") {
+    var password = document.getElementById("password").value;
+    console.log(password);
+    if (nombre == "" || apellidos == "" || userName == "" || correo == "" || password == "") {
         Swal.fire({
             title: 'Error',
             text: 'No puede haber ningun campo vacio',
             icon: 'error', // Puedes cambiar el icono (warning, success, error, info, etc.)
-            confirmButtonText: 'Aceptar', // Puedes personalizar el texto del botón
-            confirmButtonColor: '#3085d6', // Puedes personalizar el color del botón
-            allowOutsideClick: false // Puedes controlar si se permite hacer clic fuera del cuadro de diálogo
+            confirmButtonText: 'Aceptar', 
+            confirmButtonColor: '#3085d6',
+            allowOutsideClick: false 
         }).then((result) => {
         });
     }
@@ -26,58 +26,77 @@ function registrar() {
             title: 'Error',
             text: 'El correo no tiene el formato correcto',
             icon: 'error', // Puedes cambiar el icono (warning, success, error, info, etc.)
-            confirmButtonText: 'Aceptar', // Puedes personalizar el texto del botón
-            confirmButtonColor: '#3085d6', // Puedes personalizar el color del botón
-            allowOutsideClick: false // Puedes controlar si se permite hacer clic fuera del cuadro de diálogo
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#3085d6', 
+            allowOutsideClick: false 
         }).then((result) => {
         });
     }
     else {
-        Swal.fire({
-            title: 'Usuario Registrado',
-            text: 'Usuario registrado correctamente',
-            icon: 'success', // Puedes cambiar el icono (warning, success, error, info, etc.)
-            confirmButtonText: 'Aceptar', // Puedes personalizar el texto del botón
-            confirmButtonColor: '#3085d6', // Puedes personalizar el color del botón
-            allowOutsideClick: false // Puedes controlar si se permite hacer clic fuera del cuadro de diálogo
-        }).then((result) => {
-            if (result.isConfirmed) {
+        var data = {};
+        data.nombre = nombre;
+        data.apellidos = apellidos;
+        data.userName = userName;
+        data.correo = correo;
+        data.password = password;
 
-                var data = {};
-                data.nombre = nombre;
-                data.apellidos = apellidos;
-                data.userName = userName;
-                data.correo = correo;
-                data.password = password;
+        $.ajax({
+            url: '/Login/RegisterUser',
+            data: JSON.stringify(data),
+            async: false,
+            method: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+                console.log("ILLO");
+                console.log(data);
+                if (data == "0") {
+                    Swal.fire({
+                        title: 'Usuario Registrado',
+                        text: 'Usuario registrado correctamente',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#3085d6',
+                        allowOutsideClick: false
+                    }).then((result) => {
+                        window.location.href = "/Login/index";
+                    });
+                }
+                else if (data == "1") {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Ya existe el userName introducido',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#3085d6',
+                        allowOutsideClick: false
+                    }).then((result) => {
+                    });
+                }
+                else if (data == "2") {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Ya existe el email introducido',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#3085d6',
+                        allowOutsideClick: false
+                    }).then((result) => {
+                    });
+                }
+                else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Error al registrar los datos',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#3085d6',
+                        allowOutsideClick: false
+                    }).then((result) => {
+                    });
+                }
+            },
+            error: function () {
 
-                $.ajax({
-                    url: '/Login/RegisterUser',
-                    data: JSON.stringify(data),
-                    async: false,
-                    method: 'POST',
-                    contentType: 'application/json',
-                    success: function (data) {
-                        console.log("------------");
-                        console.log(data);
-                        var contenido = "";
-                        for (var clave in data) {
-                            if (data.hasOwnProperty(clave)) {
-                                console.log("Clave: " + clave);
-                                console.log("Lista: " + data[clave].join(", ")); // Convierte la lista en una cadena y la imprime
-                                contenido += data[clave].join(", ") + "\n";
-                            }
-                        }
-                        document.getElementById("mostrarSolucion").value = contenido;
-                        console.log("------------");
-                    },
-                    error: function () {
-
-                    }
-                });
-
-
-
-                //window.location.href = "/Login/index";
             }
         });
     }

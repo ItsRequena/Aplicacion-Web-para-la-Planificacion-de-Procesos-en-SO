@@ -18,16 +18,16 @@
             <!-- Icono -->
             <br />
             <div class="fadeIn first">
-                <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="200" height="200"/>
+                <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="200" height="200" />
             </div>
             <br />
             <!-- Login -->
             <form method="post">
                 <input type="text" id="userName" class="fadeIn second" name="userName" placeholder="Nombre de usuario" onfocus="clearText(this)" onblur="restoreTextU(this)">
                 <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña" onfocus="clearText(this)" onblur="restoreTextP(this)">
+                <div class="text-center" id="mensajeError">
+                </div>
                 <input type="button" id="access" class="fadeIn fourth" value="Acceder">
-                @*<input type="submit" id="access" class="fadeIn fourth" value="EJERCICIOS">
-                <input type="submit" id="drag" class="fadeIn fourth" value="DRAG & DROP">*@
                 <br />
                 <a class="fadeIn five underlineHover" href="#" id="nuevaCuenta">Crear cuenta</a>
             </form>
@@ -43,6 +43,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="~/Scripts/Custom/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
 

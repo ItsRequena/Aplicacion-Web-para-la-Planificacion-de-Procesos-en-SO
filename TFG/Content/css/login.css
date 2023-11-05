@@ -29,6 +29,10 @@ p {
     font-family: "Poppins", sans-serif;
 }
 
+#mensajeError {
+    color: #990011;
+}
+
 
 
 /* STRUCTURE */
