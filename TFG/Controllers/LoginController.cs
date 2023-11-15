@@ -9,7 +9,7 @@ using TFG.Models;
 
 namespace TFG.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController :  BaseController
     {
         public ActionResult index()
         {
@@ -22,19 +22,13 @@ namespace TFG.Controllers
             {
                 string encryptPassword = Encrypt.GetSHA256(password);
                 var user = context.user.Where(u => u.UserName == userName && u.Password == encryptPassword).FirstOrDefault();
-                if (user != null)
+                if (user == null)
                 {
                     return Json("1", JsonRequestBehavior.AllowGet);
                 }
+                SetGlobalVariable("user", user.UserName);
                 return Json("0", JsonRequestBehavior.AllowGet);
             }
-        }
-
-
-        public ActionResult Register()
-        {
-
-            return View("~/Views/Login/Register.cshtml");
         }
 
 
@@ -79,9 +73,23 @@ namespace TFG.Controllers
 
         }
 
-        public ActionResult Menu()
+
+        public ActionResult Register()
         {
-            return View("~/Views/Menu/Menu.cshtml");
+            return View("~/Views/Login/Register.cshtml");
+        }
+        public ActionResult Heuristicas()
+        {
+            return View("~/Views/Heuristicas/Heuristicas.cshtml");
+        }
+        public ActionResult Introduccion()
+        {
+            return View("~/Views/Menu/Introduccion.cshtml");
+        }
+
+        public ActionResult MenuPrincipal()
+        {
+            return View("~/Views/Menu/Index.cshtml");
         }
 
         public ActionResult Ejercicios()

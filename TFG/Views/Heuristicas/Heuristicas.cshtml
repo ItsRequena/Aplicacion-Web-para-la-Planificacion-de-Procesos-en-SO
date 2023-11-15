@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "Menu";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" containt="width=device-width, initial-scale=1" />
+    <title>Menu Planificacion de Procesos URJC</title>
+
+    <!-- CSS FILES -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/css/index.css" rel="stylesheet">
+    @*<link href="~/Content/css/bootstrap-min.css" rel="stylesheet">*@
+    <link href="~/Content/css/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/slick.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+
+
+    <main>
+
+        <!-- BARRA DE ARRIBA -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand" href="index.html">
+                    <strong><span>URJC</span> PROCESOS</strong>
+                </a>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item" active>
+                            <a class="nav-link" href="Introduccion">INTRODUCCIÓN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="Heuristicas">HEURÍSTICAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Index.html">EJERCICIOS</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="Index.html">CREAR</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="d-none d-lg-block">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="" id="userName">itsRequena</a>
+                            </li>
+                        </ul>
+                        <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="42" height="32" />
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- SECCIÓN DE 3 -->
+        <section class="featured-product section-padding">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 text-center">
+                        <h2 class="mb-5">Tipos de Heurísticas</h2>
+                    </div>
+
+                    <div class="col-lg-4 col-12 mb-3">
+                        <div class="product-thumb">
+                            <a href="Index.html">
+                                <img src="~/Content/images/FCFS.png" class="img-fluid product-image" alt="">
+                            </a>
+
+                            <div class="text-center">
+                                <div>
+                                    <h5 class="product-title mb-0">
+                                        <a href="Index.html" class="product-title-link">FCFS</a>
+                                    </h5>
+
+                                    <p class="product-p">First-Come, First-Served</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-12 mb-3">
+                        <div class="product-thumb">
+                            <a href="Index.html">
+                                <img src="~/Content/images/SJF.png" class="img-fluid product-image" alt="">
+                            </a>
+
+                            <div class="text-center">
+                                <div>
+                                    <h5 class="product-title">
+                                        <a href="Index.html" class="product-title-link">SJF</a>
+                                    </h5>
+
+                                    <p class="product-p">Shortest Job First</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-12">
+                        <div class="product-thumb">
+                            <a href="Index.html">
+                                <img src="~/Content/images/RR.png" class="img-fluid product-image" alt="">
+                            </a>
+
+                            <div class="text-center">
+                                <div>
+                                    <h5 class="product-title mb-0">
+                                        <a href="Index.html" class="product-title-link">RR</a>
+                                    </h5>
+
+                                    <p class="product-p">Round Robin</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Custom/indexScript/jquery.min.js"></script>
+
+    <script src="~/Scripts/Custom/indexScript/bootstrap.bundle.min.js"></script>
+
+    <script src="~/Scripts/Custom/indexScript/Headroom.js"></script>
+    @*<script src="~/Scripts/Custom/indexScript/jQuery.headroom.js"></script>*@
+    <script src="~/Scripts/Custom/indexScript/slick.min.js"></script>
+    <script src="~/Scripts/Custom/indexScript/custom.js"></script>
+    <script src="~/Scripts/Custom/indexScript/index.js"></script>
+</body>
+</html>
+

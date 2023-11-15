@@ -253,6 +253,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Data\BBDDContext.cs" />
@@ -284,8 +285,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\bootstrap-icons.css" />
+    <Content Include="Content\css\bootstrap-min.css" />
+    <Content Include="Content\css\index.css" />
     <Content Include="Content\css\ejercicio.css" />
     <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\slick.css" />
+    <Content Include="Content\images\FCFS.png" />
+    <Content Include="Content\images\RR.png" />
+    <Content Include="Content\images\SJF.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -298,6 +306,13 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Custom\ejercicio.js" />
     <Content Include="Scripts\Custom\index.js" />
+    <Content Include="Scripts\Custom\login.js" />
+    <Content Include="Scripts\Custom\indexScript\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\Custom\indexScript\custom.js" />
+    <Content Include="Scripts\Custom\indexScript\Headroom.js" />
+    <Content Include="Scripts\Custom\indexScript\jQuery.headroom.js" />
+    <Content Include="Scripts\Custom\indexScript\jquery.min.js" />
+    <Content Include="Scripts\Custom\indexScript\slick.min.js" />
     <Content Include="Scripts\Custom\Menu.js" />
     <Content Include="Scripts\Custom\register.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -325,10 +340,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Menu\Menu.cshtml" />
     <Content Include="Views\Menu\Ejercicio.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Heuristicas\Heuristicas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
