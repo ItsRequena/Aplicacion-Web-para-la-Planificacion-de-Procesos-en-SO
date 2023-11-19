@@ -1,0 +1,213 @@
+﻿
+@{
+    ViewBag.Title = "Menu";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" containt="width=device-width, initial-scale=1" />
+    <title>Menu Planificacion de Procesos URJC</title>
+
+    <!-- CSS FILES -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/css/index.css" rel="stylesheet">
+    @*<link href="~/Content/css/bootstrap-min.css" rel="stylesheet">*@
+    <link href="~/Content/css/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/slick.css">
+    <link href="~/Content/css/ejercicio.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+
+
+    <main>
+
+        <!-- BARRA DE ARRIBA -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand" href="menuPrincipal">
+                    <strong><span>URJC</span> PROCESOS</strong>
+                </a>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item" active>
+                            <a class="nav-link" href="Introduccion">INTRODUCCIÓN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="Heuristicas">HEURÍSTICAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Index.html">EJERCICIOS</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="Index.html">CREAR</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="d-none d-lg-block">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="" id="userName">itsRequena</a>
+                            </li>
+                        </ul>
+                        <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="42" height="32" />
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+        <p id="tipoHeuristcia"hidden>SJF</p>
+
+        <!-- USARÉ PANTALLA PRINCIPAL DEBAJO DE LA IMAGEN -->
+        <section class="about section-padding">
+            <div class="container">
+
+                <div class="row">
+                    <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                        <div class="text-center">
+                            <h4 class="mb-3">Propiedades de la Planificación <span>SJF</span></h4>
+                        </div>
+                        <p>Cuando la <b>CPU está disponible</b> se asigna al proceso que tiene la siguiente <b>ráfaga de CPU más corta</b>.</p>
+                        <p>A igualdad de tiempo de ráfaga, se usa FCFS para decidir.</p>
+                        <p>Es el <b>algoritmo óptimo</b> en cuanto a <b>tiempo medio de espera</b>.</p>
+                        <p>Este algoritmo se puede utilizar de forma <b>cooperativa</b> o de forma <b>apropiativa</b>.</p>
+                        <p>De forma cooperativa, un proceso que se este ejecutando <b>no se puede interrumpir hasta que termine su ráfaga</b>, mientras que de forma apropiativa si se puede interrumpir.</p>
+                        <p>Ejemplo cooperativo:</p>
+                    </div>
+                </div>
+
+                <div class="text-center" id="ejemplo">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                <p><b>Proceso 1</b></p>
+                                <p>Tiempo de llegada: 0 segundos</p>
+                                <p>Ráfagas: 10 CPU - 30 Disco - 20 CPU</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                <p><b>Proceso 2</b></p>
+                                <p>Tiempo de llegada: 0 segundos</p>
+                                <p>Ráfagas: 20 CPU - 10 Disco - 10 CPU</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-9">
+                            <div class="content">
+                                <div class="text-center">
+                                    @for (int i = 0; i < 2; i++)
+                                    {
+                                        <div class="fila" id="fila-@i">
+                                            @for (int j = 0; j < 8; j++)
+                                            {
+                                                <div class="recuadro-blanco" id="recuadro-blancoC-@i-@j"></div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                <p>Tiempo medio de espera: 50 (P1) + 10 (P2) / 2 = <b>30 segundos</b></p>
+                                <p>Tiempo medio de ejecución: 70 (P1) + 50 (P2) / 2 = <b>60 segundos</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                        <p>Ejemplo apropiativo:</p>
+                    </div>
+                </div>
+
+                <div class="text-center" id="ejemplo">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                <p><b>Proceso 1</b></p>
+                                <p>Tiempo de llegada: 0 segundos</p>
+                                <p>Ráfagas: 30 CPU - 10 Disco - 10 CPU</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                <p><b>Proceso 2</b></p>
+                                <p>Tiempo de llegada: 10 segundos</p>
+                                <p>Ráfagas: 10 CPU - 20 Disco - 30 CPU</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="content">
+                                <div class="text-center">
+                                    @for (int i = 0; i < 2; i++)
+                                    {
+                                        <div class="fila" id="fila-@i">
+                                            @for (int j = 0; j < 9; j++)
+                                            {
+                                                <div class="recuadro-blanco" id="recuadro-blancoA-@i-@j"></div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                <p>Tiempo medio de espera: 20 (P1) + 50 (P2) / 2 = <b>35 segundos</b></p>
+                                <p>Tiempo medio de ejecución: 60 (P1) + 70 (P2) / 2 = <b>65 segundos</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+    </main>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Custom/indexScript/jquery.min.js"></script>
+
+    <script src="~/Scripts/Custom/indexScript/bootstrap.bundle.min.js"></script>
+
+    <script src="~/Scripts/Custom/indexScript/Headroom.js"></script>
+    @*<script src="~/Scripts/Custom/indexScript/jQuery.headroom.js"></script>*@
+    <script src="~/Scripts/Custom/indexScript/slick.min.js"></script>
+    @*<script src="~/Scripts/Custom/indexScript/custom.js"></script>*@
+    <script src="~/Scripts/Custom/rellenarEjemplos.js"></script>
+</body>
+</html>
+

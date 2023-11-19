@@ -11,11 +11,6 @@ namespace TFG.Controllers
 {
     public class LoginController :  BaseController
     {
-        public ActionResult index()
-        {
-            return View("~/Views/Login/Login.cshtml");
-        }
-
         public ActionResult Login(string userName, string password)
         {
             using (var context = new BBDDContext("mySqlConnection"))
@@ -73,28 +68,5 @@ namespace TFG.Controllers
 
         }
 
-
-        public ActionResult Register()
-        {
-            return View("~/Views/Login/Register.cshtml");
-        }
-        public ActionResult Heuristicas()
-        {
-            return View("~/Views/Heuristicas/Heuristicas.cshtml");
-        }
-        public ActionResult Introduccion()
-        {
-            return View("~/Views/Menu/Introduccion.cshtml");
-        }
-
-        public ActionResult MenuPrincipal()
-        {
-            return View("~/Views/Menu/Index.cshtml");
-        }
-
-        public ActionResult Ejercicios()
-        {
-            return View("~/Views/Menu/Ejercicio.cshtml");
-        }
     }
 }

@@ -17,6 +17,7 @@
     @*<link href="~/Content/css/bootstrap-min.css" rel="stylesheet">*@
     <link href="~/Content/css/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/css/slick.css">
+    <link href="~/Content/css/ejercicio.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
@@ -35,7 +36,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a class="navbar-brand" href="MenuPrincipal">
+                <a class="navbar-brand" href="menuPrincipal">
                     <strong><span>URJC</span> PROCESOS</strong>
                 </a>
 
@@ -67,74 +68,80 @@
                         <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="42" height="32" />
                     </div>
                 </div>
+
             </div>
         </nav>
-        <!-- SECCIÓN DE 3 -->
-        <section class="featured-product section-padding">
+
+        <p id="tipoHeuristcia"hidden>RR</p>
+
+        <!-- USARÉ PANTALLA PRINCIPAL DEBAJO DE LA IMAGEN -->
+        <section class="about section-padding">
             <div class="container">
+
                 <div class="row">
-
-                    <div class="col-12 text-center">
-                        <h2 class="mb-5">Tipos de Heurísticas</h2>
-                    </div>
-
-                    <div class="col-lg-4 col-12 mb-3">
-                        <div class="product-thumb">
-                            <a href="FCFS">
-                                <img src="~/Content/images/FCFS.png" class="img-fluid product-image" alt="">
-                            </a>
-
-                            <div class="text-center">
-                                <div>
-                                    <h5 class="product-title mb-0">
-                                        <a href="FCFS" class="product-title-link">FCFS</a>
-                                    </h5>
-
-                                    <p class="product-p">First-Come, First-Served</p>
-                                </div>
-                            </div>
+                    <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                        <div class="text-center">
+                            <h4 class="mb-3">Propiedades de la Planificación <span>RR</span></h4>
                         </div>
+                        <p>Es similar a FCFS, pero cada cierto tiempo (<b>cuanto</b>) el S.O desaloja el proceso que se está ejecutando y lo pone al final de la cola de procesos preparados. El <b>primer proceso de la cola</b> de preparados <b>toma la CPU</b>.</p>
+                        <p>Típico de los sistemas de tiempo compartido.</p>
+                        <p>El <b>rendimiento del algoritmo depende mucho de la duración del cuanto de tiempo</b> respecto a la duración media de las ráfagas de CPU:</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;- Un <b>cuanto muy grande</b> en RR es casi lo mismo que <b>FCFS</b>.</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;- Un <b>cuanto muy pequeño</b> producirá muchos cambios de contexto (<b>se pierde tiempo en cada cambio</b>).</p>
+                        <p>Ejemplo con cuanto de 20 segundos:</p>
                     </div>
-
-                    <div class="col-lg-4 col-12 mb-3">
-                        <div class="product-thumb">
-                            <a href="SJF">
-                                <img src="~/Content/images/SJF.png" class="img-fluid product-image" alt="">
-                            </a>
-
-                            <div class="text-center">
-                                <div>
-                                    <h5 class="product-title">
-                                        <a href="SJF" class="product-title-link">SJF</a>
-                                    </h5>
-
-                                    <p class="product-p">Shortest Job First</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-12">
-                        <div class="product-thumb">
-                            <a href="RR">
-                                <img src="~/Content/images/RR.png" class="img-fluid product-image" alt="">
-                            </a>
-
-                            <div class="text-center">
-                                <div>
-                                    <h5 class="product-title mb-0">
-                                        <a href="RR" class="product-title-link">RR</a>
-                                    </h5>
-
-                                    <p class="product-p">Round Robin</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
+
+                <div class="text-center" id="ejemplo">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                <p><b>Proceso 1</b></p>
+                                <p>Tiempo de llegada: 0 segundos</p>
+                                <p>Ráfagas: 30 CPU - 10 Disco - 30 CPU</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                <p><b>Proceso 2</b></p>
+                                <p>Tiempo de llegada: 10 segundos</p>
+                                <p>Ráfagas: 30 CPU - 10 Disco - 10 CPU</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-9">
+                            <div class="content">
+                                <div class="text-center">
+                                    @for (int i = 0; i < 2; i++)
+                                    {
+                                        <div class="fila" id="fila-@i">
+                                            @for (int j = 0; j < 11; j++)
+                                            {
+                                                <div class="recuadro-blanco" id="recuadro-blancoR-@i-@j"></div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                <p>Tiempo medio de espera: 90 (P1) + 70 (P2) / 2 = <b>80 segundos</b></p>
+                                <p>Tiempo medio de ejecución: 100 (P1) + 80 (P2) / 2 = <b>90 segundos</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
+
 
     </main>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -145,8 +152,8 @@
     <script src="~/Scripts/Custom/indexScript/Headroom.js"></script>
     @*<script src="~/Scripts/Custom/indexScript/jQuery.headroom.js"></script>*@
     <script src="~/Scripts/Custom/indexScript/slick.min.js"></script>
-    <script src="~/Scripts/Custom/indexScript/custom.js"></script>
-    <script src="~/Scripts/Custom/indexScript/index.js"></script>
+    @*<script src="~/Scripts/Custom/indexScript/custom.js"></script>*@
+    <script src="~/Scripts/Custom/rellenarEjemplos.js"></script>
 </body>
 </html>
 

@@ -1,4 +1,4 @@
-﻿.container {
+﻿.containerM {
     justify-content: center;
     display: flex;
 }
@@ -26,7 +26,7 @@ p {
     overflow: auto;
 }
 
-.scroll-container {
+.scroll-containerM {
     overflow-x: auto;
     white-space: nowrap; /* Evita que los elementos se rompan en varias líneas */
     padding-bottom: 20px;
@@ -130,4 +130,10 @@ p {
     border: none; /* Sin borde */
     border-radius: 5px; /* Bordes redondeados */
     cursor: pointer; /* Cambiar el cursor al pasar por encima */
+}
+
+#ejemplo {
+    border: 2px solid #ccc; /* Borde opcional */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4); /* Propiedad para la sombra */
+    border-radius: 5px;
 }

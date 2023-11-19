@@ -287,6 +287,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\css\bootstrap-icons.css" />
     <Content Include="Content\css\bootstrap-min.css" />
+    <Content Include="Content\css\ejercicios.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\ejercicio.css" />
     <Content Include="Content\css\login.css" />
@@ -315,6 +316,7 @@
     <Content Include="Scripts\Custom\indexScript\slick.min.js" />
     <Content Include="Scripts\Custom\Menu.js" />
     <Content Include="Scripts\Custom\register.js" />
+    <Content Include="Scripts\Custom\rellenarEjemplos.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -342,6 +344,11 @@
     <Content Include="Views\Menu\Ejercicio.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Heuristicas\Heuristicas.cshtml" />
+    <Content Include="Views\Heuristicas\FCFS.cshtml" />
+    <Content Include="Views\Heuristicas\RR.cshtml" />
+    <Content Include="Views\Heuristicas\SJF.cshtml" />
+    <Content Include="Views\Menu\Introduccion.cshtml" />
+    <Content Include="Views\Menu\Ejercicios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,20 +14,20 @@
     <link href="~/Content/css/ejercicio.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
+    <div class="containerM">
         <div class="row">
             <h1 class="text-center">DRAG & DROP</h1>
         </div>
     </div>
 
-    <div class="container">
+    <div class="containerM">
         <div class="row">
             <h5 class="text-center">FCFS</h5>
         </div>
     </div>
 
     <!-- Información de Procesos -->
-    <div class="container">
+    <div class="containerM">
         <div class="row">
             <div id="procesos-info">
                 <h4 class="text-center">Proceso 1</h4>
@@ -46,8 +46,8 @@
     <!-- Matriz de Recuadros Blancos -->
     <div class="row">
         <div class="col-md-11">
-            <div class="container" id="matriz">
-                <div class="scroll-container">
+            <div class="containerM" id="matriz">
+                <div class="scroll-containerM">
                     <div class="content">
                         @for (int i = 0; i < 2; i++)
                         {
@@ -71,7 +71,7 @@
     <br />
 
     <!-- Fichas (E, D, L, T) -->
-    <div class="container">
+    <div class="containerM">
         <div class="row">
             <div class="fila">
                 <div class="col-md-3" id="contenedorFichaEjecucion">
@@ -91,7 +91,7 @@
     </div>
     <br />
 
-    <div class="container">
+    <div class="containerM">
         <div class="row">
             <div class="text-center">
                 <button id="Calcular" class="boton-estilizado" onclick="resolver()">RESOLVER</button>

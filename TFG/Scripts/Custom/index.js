@@ -1,11 +1,10 @@
 ﻿const nombreUsuario = document.getElementById("userName");
 
 $(document).ready(function () {
-
+    console.log("entro!");
     var userName = "";
     $.ajax({
         url: '/Base/GetUsername',
-        data: JSON.stringify(data),
         async: true,
         method: 'POST',
         contentType: 'application/json',

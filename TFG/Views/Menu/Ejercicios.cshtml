@@ -1,0 +1,201 @@
+﻿
+@{
+    ViewBag.Title = "Menu";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" containt="width=device-width, initial-scale=1" />
+    <title>Menu Planificacion de Procesos URJC</title>
+
+    <!-- CSS FILES -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/css/index.css" rel="stylesheet">
+    @*<link href="~/Content/css/bootstrap-min.css" rel="stylesheet">*@
+    <link href="~/Content/css/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/slick.css">
+    <link rel="stylesheet" href="~/Content/css/ejercicios.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+
+
+    <main>
+
+        <!-- BARRA DE ARRIBA -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand" href="MenuPrincipal">
+                    <strong><span>URJC</span> PROCESOS</strong>
+                </a>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Introduccion">INTRODUCCIÓN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Heuristicas">HEURÍSTICAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Ejercicios">EJERCICIOS</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="Menu">CREAR</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="d-none d-lg-block">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="" id="userName">itsRequena</a>
+                            </li>
+                        </ul>
+                        <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="42" height="32" />
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+        </nav>
+
+        <!-- LISTA DE EJERCICIOS -->
+        <div class="row">
+            <section class="intro">
+                <div class="bg-image h-100" style="background-color: #f5f7fa;">
+                    <div class="mask d-flex align-items-center h-100">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body p-0">
+                                            <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px">
+                                                <table class="table table-striped mb-0">
+                                                    <thead style="background-color: #002d72;">
+                                                        <tr>
+                                                            <th scope="col">Class name</th>
+                                                            <th scope="col">Type</th>
+                                                            <th scope="col">Hours</th>
+                                                            <th scope="col">Trainer</th>
+                                                            <th scope="col">Spots</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Like a butterfly</td>
+                                                            <td>Boxing</td>
+                                                            <td>9:00 AM - 11:00 AM</td>
+                                                            <td>Aaron Chapman</td>
+                                                            <td>10</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Mind &amp; Body</td>
+                                                            <td>Yoga</td>
+                                                            <td>8:00 AM - 9:00 AM</td>
+                                                            <td>Adam Stewart</td>
+                                                            <td>15</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Crit Cardio</td>
+                                                            <td>Gym</td>
+                                                            <td>9:00 AM - 10:00 AM</td>
+                                                            <td>Aaron Chapman</td>
+                                                            <td>10</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Wheel Pose Full Posture</td>
+                                                            <td>Yoga</td>
+                                                            <td>7:00 AM - 8:30 AM</td>
+                                                            <td>Donna Wilson</td>
+                                                            <td>15</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Playful Dancer's Flow</td>
+                                                            <td>Yoga</td>
+                                                            <td>8:00 AM - 9:00 AM</td>
+                                                            <td>Donna Wilson</td>
+                                                            <td>10</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Zumba Dance</td>
+                                                            <td>Dance</td>
+                                                            <td>5:00 PM - 7:00 PM</td>
+                                                            <td>Donna Wilson</td>
+                                                            <td>20</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Cardio Blast</td>
+                                                            <td>Gym</td>
+                                                            <td>5:00 PM - 7:00 PM</td>
+                                                            <td>Randy Porter</td>
+                                                            <td>10</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Pilates Reformer</td>
+                                                            <td>Gym</td>
+                                                            <td>8:00 AM - 9:00 AM</td>
+                                                            <td>Randy Porter</td>
+                                                            <td>10</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Supple Spine and Shoulders</td>
+                                                            <td>Yoga</td>
+                                                            <td>6:30 AM - 8:00 AM</td>
+                                                            <td>Randy Porter</td>
+                                                            <td>15</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Yoga for Divas</td>
+                                                            <td>Yoga</td>
+                                                            <td>9:00 AM - 11:00 AM</td>
+                                                            <td>Donna Wilson</td>
+                                                            <td>20</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Virtual Cycle</td>
+                                                            <td>Gym</td>
+                                                            <td>8:00 AM - 9:00 AM</td>
+                                                            <td>Randy Porter</td>
+                                                            <td>20</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Custom/indexScript/jquery.min.js"></script>
+
+    <script src="~/Scripts/Custom/indexScript/bootstrap.bundle.min.js"></script>
+
+    <script src="~/Scripts/Custom/indexScript/Headroom.js"></script>
+    @*<script src="~/Scripts/Custom/indexScript/jQuery.headroom.js"></script>*@
+    <script src="~/Scripts/Custom/indexScript/slick.min.js"></script>
+    @*<script src="~/Scripts/Custom/indexScript/custom.js"></script>*@
+    <script src="~/Scripts/Custom/index.js"></script>
+</body>
+</html>
+
