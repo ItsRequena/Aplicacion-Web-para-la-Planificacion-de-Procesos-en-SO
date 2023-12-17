@@ -255,6 +255,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\EjerciciosController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Data\BBDDContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -306,6 +307,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Custom\ejercicio.js" />
+    <Content Include="Scripts\Custom\ejercicios.js" />
     <Content Include="Scripts\Custom\index.js" />
     <Content Include="Scripts\Custom\login.js" />
     <Content Include="Scripts\Custom\indexScript\bootstrap.bundle.min.js" />
@@ -314,7 +316,7 @@
     <Content Include="Scripts\Custom\indexScript\jQuery.headroom.js" />
     <Content Include="Scripts\Custom\indexScript\jquery.min.js" />
     <Content Include="Scripts\Custom\indexScript\slick.min.js" />
-    <Content Include="Scripts\Custom\Menu.js" />
+    <Content Include="Scripts\Custom\crear.js" />
     <Content Include="Scripts\Custom\register.js" />
     <Content Include="Scripts\Custom\rellenarEjemplos.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -340,7 +342,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Menu\Menu.cshtml" />
+    <Content Include="Views\Menu\Crear.cshtml" />
     <Content Include="Views\Menu\Ejercicio.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Heuristicas\Heuristicas.cshtml" />

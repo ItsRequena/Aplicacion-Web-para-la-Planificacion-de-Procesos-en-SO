@@ -13,7 +13,7 @@ namespace TFG.Models
         public int numProcesos { get; set; }
         public int heuristicaId { get; set; }
             
-        public int cuanto { get; set; }
+        public int? cuanto { get; set; }
         public int profesor { get; set; }
         public string uploadedBy { get; set; }
 

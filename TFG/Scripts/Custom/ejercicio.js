@@ -2,6 +2,7 @@
 const contenedorFichasDisco = document.querySelector('#contenedorFichaDisco');
 const contenedorFichasListo = document.querySelector('#contenedorFichaListo');
 const contenedorFichasTerminado = document.querySelector('#contenedorFichaTerminado');
+const infoProcesos = document.querySelector('#infoProcesos');
 
 var fichaInterna = false;
 var ejecucion = false;
@@ -16,9 +17,136 @@ var contadorColumnas = 8;
 var numProcesos = 2;
 var solucion;
 $(document).ready(function () {
+
+    inicializarInfoProcesos();
+
     inicializarDragDropsFichas();
     inicializarDragDropsMatriz();
 });
+
+function inicializarInfoProcesos() {
+
+    $.ajax({
+        url: '/Ejercicios/isProfesor',
+        async: true,
+        method: 'POST',
+        success: function (data) {
+
+            if (data != "1" && data != "2") {
+                $.ajax({
+                    url: '/Ejercicios/ResolverEjercicioSeleccionado',
+                    async: true,
+                    method: 'POST',
+                    success: function (data) {
+
+                        console.log("NAZI!");
+                        console.log(data);
+
+                        console.log(data.procesos);
+                        console.log(data.procesos.length);
+
+
+                        for (let i = 0; i < data.procesos.length; i++) {
+
+                            console.log("FOR FUERA -" + i);
+
+                            // Crear el div
+                            var divProcesosInfo = document.createElement("div");
+                            divProcesosInfo.id = "procesos-info";
+
+                            // Crear el encabezado h4
+                            var pProceso = document.createElement("p");
+                            pProceso.classList.add("text-center");
+                            pProceso.textContent = "PROCESO " + (i + 1);
+                            pProceso.style.fontWeight = "bold";
+
+                            // Crear los párrafos
+                            var pTiempoLlegada = document.createElement("p");
+                            pTiempoLlegada.textContent = "Tiempo de llegada: " + data.procesos[i].tiempoLlegada + " segundos";
+
+                            var pRafagas = document.createElement("p");
+                            var textoRafagas = "Ráfagas: ";
+                            var rafaga = data.procesos[i].rafaga.split(',');
+                            for (let j = 0; j < rafaga.length; j++) {
+                                console.log("FOR DENTRO -" + j);
+                                if (j % 2 == 0) {
+                                    textoRafagas += rafaga[j] + " CPU";
+                                }
+                                else {
+                                    textoRafagas += rafaga[j] + " Disco";
+                                }
+
+                                if (j != rafaga.length - 1) {
+                                    textoRafagas += " - ";
+                                }
+                            }
+                            pRafagas.textContent = textoRafagas;
+
+                            // Agregar los elementos al div
+                            divProcesosInfo.appendChild(pProceso);
+                            divProcesosInfo.appendChild(pTiempoLlegada);
+                            divProcesosInfo.appendChild(pRafagas);
+
+                            infoProcesos.appendChild(divProcesosInfo)
+                        }
+
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'ERROR',
+                            text: 'Se produjo un error al cargar el ejercicio',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#3085d6',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '/Ejercicios/MenuPrincipal';
+                            } else {
+                                window.location.href = '/Ejercicios/MenuPrincipal';
+                            }
+                        });
+                    }
+                });
+            }
+
+            else {
+                Swal.fire({
+                    title: 'ERROR',
+                    text: 'Se produjo un error al cargar el ejercicio',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#3085d6',
+                    allowOutsideClick: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/Ejercicios/MenuPrincipal';
+                    } else {
+                        window.location.href = '/Ejercicios/MenuPrincipal';
+                    }
+                });
+            }
+        },
+        error: function () {
+            Swal.fire({
+                title: 'ERROR',
+                text: 'Se produjo un error al cargar el ejercicio',
+                icon: 'error', 
+                confirmButtonText: 'Aceptar', 
+                confirmButtonColor: '#3085d6', 
+                allowOutsideClick: false 
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/Ejercicios/MenuPrincipal';
+                } else {
+                    window.location.href = '/Ejercicios/MenuPrincipal';
+                }
+            });
+        }
+    });
+
+
+}
 
 function inicializarDragDropsFichas() {
     inicializarFichaEjecucion();
@@ -383,6 +511,21 @@ function agregarColumna() {
     contadorColumnas++;
 }
 
+function quitarColumna() {
+    contadorColumnas--;
+    for (var i = 0; i < numProcesos; i++) {
+        var elemento = "recuadro-blanco-" + i + "-" + contadorColumnas;
+        var cuadrado = document.getElementById(elemento);
+        console.log("----------");
+        console.log(elemento);
+        console.log(cuadrado);
+        var id = "fila-" + i;
+        var fila = document.getElementById(id);
+        console.log(fila);
+        fila.removeChild(cuadrado);
+    }
+}
+
 function resolver() {
     for (var i = 0; i < numProcesos; i++) {
         matriz[i] = [];
@@ -396,70 +539,34 @@ function resolver() {
             // Obtén el id del div hijo
             if (divHijo) {
                 const idDelDivHijo = divHijo.id;
-                console.log('El id del div hijo es: ' + idDelDivHijo);
                 if (idDelDivHijo == 'EjecucionIn') {
-                    console.log('E');
                     matriz[i][j] = "E";
                 }
                 else if (idDelDivHijo == 'DiscoIn') {
-                    console.log('D');
                     matriz[i][j] = "D";
                 }
                 else if (idDelDivHijo == 'ListoIn') {
-                    console.log('L');
                     matriz[i][j] = "L";
                 }
                 else if (idDelDivHijo == 'TerminadoIn') {
-                    console.log('T');
                     matriz[i][j] = "T";
                 }
                 else {
-                    console.log('-');
                     matriz[i][j] = "-";
                 }
             } else {
-                console.log('-');
                 matriz[i][j] = "-";
             }
         }
     }
 
-
-    var data = {};
-
-    var tllegada = [];
-    tllegada.push(0);
-    tllegada.push(10);
-
-    var listaProcesos = [];
-    var rafagas1 = [];
-    rafagas1.push(20);
-    rafagas1.push(10);
-    rafagas1.push(20);
-    listaProcesos.push(rafagas1);
-
-    var rafagas2 = [];
-    rafagas2.push(10);
-    rafagas2.push(20);
-    rafagas2.push(20);
-    listaProcesos.push(rafagas2);
-
-    data.tllegada = tllegada;
-    data.listaProcesos = listaProcesos;
-
-    solucion = true;
-
     $.ajax({
-        url: '/Menu/FCFS',
-        data: JSON.stringify(data),
+        url: '/Menu/ResolverEjercicio',
         async: true,
         method: 'POST',
-        contentType: 'application/json',
         success: function (data) {
-            console.log(data);
             var contenido = "";
-
-            console.log("------------");
+            var solucion = true;
             for (var i = 0; i < numProcesos; i++) {
                 for (var j = 0; j < contadorColumnas; j++) {
 

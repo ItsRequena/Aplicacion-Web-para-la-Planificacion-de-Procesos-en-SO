@@ -22,6 +22,7 @@ namespace TFG.Controllers
                     return Json("1", JsonRequestBehavior.AllowGet);
                 }
                 SetGlobalVariable("user", user.UserName);
+                SetGlobalVariable("profesor", user.Rol != 1);
                 return Json("0", JsonRequestBehavior.AllowGet);
             }
         }

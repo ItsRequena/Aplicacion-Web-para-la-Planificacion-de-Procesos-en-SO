@@ -29,3 +29,37 @@ thead {
     top: 0;
     position: sticky;
 }
+
+.btnResolver {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .btnResolver:hover {
+        background-color: #45a049;
+    }
+
+    .btnResolver:active {
+        background-color: #3e8e41;
+    }
+
+.btnEliminar {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .btnEliminar:hover {
+        background-color: #da190b;
+    }
+
+    .btnEliminar:active {
+        background-color: #da190b;
+    }

@@ -9,8 +9,13 @@ $(document).ready(function () {
         method: 'POST',
         contentType: 'application/json',
         success: function (data) {
-            userName = data;
-            nombreUsuario.innerHTML = userName;
+            if (data == "logout") {
+                window.location.href = '/Ejercicios/LoginView';
+            }
+            else {
+                userName = data;
+                nombreUsuario.innerHTML = userName;
+            }
 
         }
     });

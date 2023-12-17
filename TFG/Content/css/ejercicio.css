@@ -10,11 +10,12 @@ p {
 #procesos-info {
     align-items: center;
     margin: 0 auto;
-    border: 1px solid black;
+    border: 1px solid #ccc;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Propiedad para la sombra */
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: whitesmoke;
     margin: 10px;
+    margin-bottom: 15px;
 }
 
 /* Estilo para los divs con id "matriz" */
@@ -42,6 +43,18 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#modificacionColumna {
+    border-radius: 50px;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #ccc;
+    background: white;
+}
+
+#modificacionColumna:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
 }
 
 /* Estilo para los divs con clase "recuadro-blanco" */
@@ -131,9 +144,40 @@ p {
     border-radius: 5px; /* Bordes redondeados */
     cursor: pointer; /* Cambiar el cursor al pasar por encima */
 }
+    .boton-estilizado:hover {
+        background-color: #47A54B; /* Color de fondo */
+    }
+
+.boton-practicar {
+    background-color: #2986CC; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+}
+    .boton-practicar:hover {
+        background-color: #2D84C5; /* Color de fondo */
+    }
 
 #ejemplo {
     border: 2px solid #ccc; /* Borde opcional */
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4); /* Propiedad para la sombra */
     border-radius: 5px;
+}
+
+[id^="procesoInfo"] {
+    /*background-color: #2986CC;*/
+
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Propiedad para la sombra */
+    border-radius: 5px;
+    background-color: whitesmoke;
+    margin: 10px;
+    margin-bottom: 15px;
+}
+
+.errorTipo {
+    background-color: #f07e7e;
 }

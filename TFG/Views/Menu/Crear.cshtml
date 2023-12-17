@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "Menu";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" containt="width=device-width, initial-scale=1" />
+    <title>Menu Planificacion de Procesos URJC</title>
+
+    <!-- CSS FILES -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/css/index.css" rel="stylesheet">
+    @*<link href="~/Content/css/bootstrap-min.css" rel="stylesheet">*@
+    <link href="~/Content/css/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/slick.css">
+    <link rel="stylesheet" href="~/Content/css/ejercicio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+    <main>
+        <!-- BARRA DE ARRIBA -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand" href="MenuPrincipal">
+                    <strong><span>URJC</span> PROCESOS</strong>
+                </a>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Introduccion">INTRODUCCIÓN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Heuristicas">HEURÍSTICAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Ejercicios">EJERCICIOS</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="Crear">CREAR</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="d-none d-lg-block">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="" id="userName"></a>
+                            </li>
+                        </ul>
+                        <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="42" height="32" />
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+        </nav>
+
+        <!-- CREACIÓN DE EJERCICIOS -->
+        <section class="featured-product section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1">
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="text-center" id="procesos-info">
+                            <br />
+                            <div>
+                                <label for="algoritmo">Selecciona una técnica para la planificación de procesos:</label>
+                                <select id="algoritmo" name="algoritmo">
+                                    <option value="index">--Seleccione una opcion--</option>
+                                    <option value="fcfs">First-Come,First-Served (FCFS)</option>
+                                    <option value="sjf">Shortest Job First (SJF)</option>
+                                    <option value="rr">Round-Robin (RR)</option>
+                                </select>
+                            </div>
+                            <div id="divtecnica" hidden>
+                                <label for="tecnica" hidden>Selecciona el tipo: </label>
+                                <select id="tecnica" name="tecnica" hidden>
+                                    <option value="index">--Seleccione una opcion--</option>
+                                    <option value="coop">Cooperativo</option>
+                                    <option value="aprop">Apropiativo</option>
+                                </select>
+                                <br />
+                            </div>
+                            <div id="divcuanto" hidden>
+                                <label for="cuanto" hidden>Introduzca el cuanto de tiempo: </label>
+                                <input hidden type="text" id="cuanto" name="Cuanto de Tiempo" />
+                                <br />
+                            </div>
+                            <div>
+                                <label for="numProcesos">Introduzca el numero de procesos: </label>
+                                <select id="numProcesos" name="Numero de Procesos"></select>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-4" id="procesosInfo-1">
+
+                    </div>
+                    <div class="col-md-4" id="procesosInfo-2">
+
+                    </div>
+                    <div class="col-md-4" id="procesosInfo-3">
+
+                    </div>
+                </div>
+
+                <br />
+                <div class="text-center">
+                    <button id="Calcular" class="boton-practicar" onclick="generar()">GENERAR</button>
+                    <button id="Practicar" class="boton-estilizado" onclick="practicar()">PRACTICAR</button>
+                </div>
+                <br />
+            </div>
+
+            <!-- MATRIZ DE RECUADROS -->
+            <div class="row" id="divGenerar" hidden>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="containerM" id="matriz">
+                        <div class="scroll-containerM">
+                            <div class="content" id="content-container">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Custom/indexScript/jquery.min.js"></script>
+
+    <script src="~/Scripts/Custom/indexScript/bootstrap.bundle.min.js"></script>
+
+    <script src="~/Scripts/Custom/indexScript/Headroom.js"></script>
+    @*<script src="~/Scripts/Custom/indexScript/jQuery.headroom.js"></script>*@
+    <script src="~/Scripts/Custom/indexScript/slick.min.js"></script>
+    @*<script src="~/Scripts/Custom/indexScript/custom.js"></script>*@
+    <script src="~/Scripts/Custom/index.js"></script>
+    <script src="~/Scripts/Custom/crear.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</body>
+</html>
+

@@ -12,7 +12,7 @@ namespace TFG.Models
         public int id { get; set; }
         public int ejercicioId { get; set; }
         public int tiempoLlegada { get; set; }
-        public int rafaga { get; set; }
+        public string rafaga { get; set; }
 
     }
 }

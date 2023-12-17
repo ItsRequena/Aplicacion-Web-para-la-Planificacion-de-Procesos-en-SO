@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Services.Description;
+using TFG.Data;
 
 namespace TFG.Controllers
 {
-    public class MenuController : Controller
+    public class MenuController : BaseController
     {
         public ActionResult Index()
         {
             return View();
         }
 
+        [HttpPost]
         public ActionResult FCFS(List<int> tllegada, List<List<int>> listaProcesos)
         {
             // ESTO ES PARA LOS TIEMPO DE ESPERA
@@ -339,7 +341,7 @@ namespace TFG.Controllers
             //return solucion;
         }
 
-
+        [HttpPost]
         public ActionResult SJFcooperativo(List<int> tllegada, List<List<int>> listaProcesos)
         {
             // ESTO ES PARA LOS TIEMPO DE ESPERA
@@ -634,7 +636,7 @@ namespace TFG.Controllers
             //return solucion;
         }
 
-
+        [HttpPost]
         public ActionResult SJFapropiativo(List<int> tllegada, List<List<int>> listaProcesos)
 
         {
@@ -938,7 +940,7 @@ namespace TFG.Controllers
             //return solucion;
         }
 
-
+        [HttpPost]
         public ActionResult RR(int cuanto, List<int> tllegada, List<List<int>> listaProcesos)
         {
             // ESTO ES PARA LOS TIEMPO DE ESPERA
@@ -1570,6 +1572,57 @@ namespace TFG.Controllers
             }
 
             return noEjecutadosEspera;
+        }
+
+        public ActionResult ResolverEjercicio()
+        {
+            int ejercicioId = GetEjercicioId();
+            try
+            {
+                using (var context = new BBDDContext("mySqlConnection"))
+                {
+                    var ejercicio = context.ejercicios.Where(e => e.id == ejercicioId).FirstOrDefault();
+                    if (ejercicio == null)
+                    {
+                        return Json("1", JsonRequestBehavior.AllowGet);
+                    }
+                    var procesos = context.procesos.Where(p => p.ejercicioId == ejercicioId).ToList();
+                    List<int> tiempoLLegadas = new List<int>();
+                    List<List<int>> listaProcesos = new List<List<int>>();
+                    foreach(var proceso in procesos)
+                    {
+                        tiempoLLegadas.Add(proceso.tiempoLlegada);
+                        string[] rafagas = proceso.rafaga.Split(',');
+                        List<int> listadoRafagas = new List<int>();
+                        foreach(var rafaga in rafagas) 
+                        {
+                            int rafagaInt = Convert.ToInt32(rafaga);
+                            listadoRafagas.Add(rafagaInt);
+                        }
+                        listaProcesos.Add(listadoRafagas);
+                    }
+
+                    switch (ejercicio.heuristicaId)
+                    {
+                        case 1:
+                            return FCFS(tiempoLLegadas, listaProcesos);
+                        case 2:
+                            return SJFcooperativo(tiempoLLegadas, listaProcesos);
+                        case 3:
+                            return SJFapropiativo(tiempoLLegadas, listaProcesos);
+                        case 4:
+                            return RR(ejercicio.cuanto ?? 0,tiempoLLegadas, listaProcesos);
+                        default:
+                            return Json("1", JsonRequestBehavior.AllowGet);
+                    }
+                }
+            }
+            catch
+            {
+                return Json("2", JsonRequestBehavior.AllowGet);
+            }
+
+
         }
     }
 }

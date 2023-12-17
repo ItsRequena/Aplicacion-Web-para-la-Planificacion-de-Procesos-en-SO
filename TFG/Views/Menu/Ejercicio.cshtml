@@ -8,101 +8,163 @@
 
 <html>
 <head>
-    <meta name="viewport" containt="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" containt="width=device-width, initial-scale=1" />
     <title>Menu Planificacion de Procesos URJC</title>
+
+    <!-- CSS FILES -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href="~/Content/css/ejercicio.css" rel="stylesheet" />
+    <link href="~/Content/css/index.css" rel="stylesheet">
+    @*<link href="~/Content/css/bootstrap-min.css" rel="stylesheet">*@
+    <link href="~/Content/css/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/slick.css">
+    <link rel="stylesheet" href="~/Content/css/ejercicio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
-    <div class="containerM">
-        <div class="row">
-            <h1 class="text-center">DRAG & DROP</h1>
-        </div>
-    </div>
 
-    <div class="containerM">
-        <div class="row">
-            <h5 class="text-center">FCFS</h5>
-        </div>
-    </div>
+    <!-- BARRA DE ARRIBA -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <!-- Información de Procesos -->
-    <div class="containerM">
-        <div class="row">
-            <div id="procesos-info">
-                <h4 class="text-center">Proceso 1</h4>
-                <p>Tiempo de llegada: 0 segundos</p>
-                <p>Ráfagas: 20 CPU - 10 Disco - 20 CPU</p>
+            <a class="navbar-brand" href="MenuPrincipal">
+                <strong><span>URJC</span> PROCESOS</strong>
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Introduccion">INTRODUCCIÓN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Heuristicas">HEURÍSTICAS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Ejercicios">EJERCICIOS</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="Menu">CREAR</a>
+                    </li>
+                </ul>
             </div>
-            <div id="procesos-info">
-                <h4 class="text-center">Proceso 2</h4>
-                <p>Tiempo de llegada: 10 segundos</p>
-                <p>Ráfagas: 10 CPU - 20 Disco - 20 CPU</p>
-            </div>
-            <!-- Agrega información de otros procesos aquí -->
-        </div>
-    </div>
 
-    <!-- Matriz de Recuadros Blancos -->
-    <div class="row">
-        <div class="col-md-11">
-            <div class="containerM" id="matriz">
-                <div class="scroll-containerM">
-                    <div class="content">
-                        @for (int i = 0; i < 2; i++)
-                        {
-                            <div class="fila" id="fila-@i">
-                                @for (int j = 0; j < 8; j++)
-                                {
-                                    <div class="recuadro-blanco" id="recuadro-blanco-@i-@j"></div>
-                                }
-                            </div>
-                        }
+            <div class="d-none d-lg-block">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="" id="userName"></a>
+                        </li>
+                    </ul>
+                    <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="42" height="32" />
+                </div>
+            </div>
+
+        </div>
+        <hr>
+    </nav>
+
+
+    <section class="featured-product section-padding">
+        <div class="container">
+            <div class="text-center">
+
+
+                <!-- Información de Procesos -->
+                <div class="containerM">
+                    <div class="row">
+                        <p id="cuantoId" hidden></p>
+                    </div>
+                    <div class="text-center" id="infoProcesos">
+                        
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-1">
-            <div style="text-align: center; margin-top:50px; margin-right: 50px;">
-                <button class="btn-secondary" id="agregar-columna" onclick="agregarColumna()">+</button>
-            </div>
-        </div>
-    </div>
-    <br />
 
-    <!-- Fichas (E, D, L, T) -->
-    <div class="containerM">
-        <div class="row">
-            <div class="fila">
-                <div class="col-md-3" id="contenedorFichaEjecucion">
-                    <div class="ficha fichaEjecucion" id="Ejecucion" draggable="true">E</div>
+                <!-- Matriz de Recuadros Blancos -->
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="containerM" id="matriz">
+                            <div class="scroll-containerM">
+                                <div class="content">
+                                    @for (int i = 0; i < 2; i++)
+                                    {
+                                        <div class="fila" id="fila-@i">
+                                            @for (int j = 0; j < 8; j++)
+                                            {
+                                                <div class="recuadro-blanco" id="recuadro-blanco-@i-@j"></div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div style="text-align: center; margin-top:50px; margin-right: 50px;">
+                            <div class="row">
+                                <button id="modificacionColumna" onclick="agregarColumna()">+</button>
+                            </div>
+                            <div class="row" style="margin-top:5px;">
+                                <button id="modificacionColumna" onclick="quitarColumna()">-</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3" id="contenedorFichaDisco">
-                    <div class="ficha fichaDisco" id="Disco" draggable="true">D</div>
+                <br />
+
+                <!-- Fichas (E, D, L, T) -->
+                <div class="containerM">
+                    <div class="row">
+                        <div class="fila">
+                            <div class="col-md-3" id="contenedorFichaEjecucion">
+                                <div class="ficha fichaEjecucion" id="Ejecucion" draggable="true">E</div>
+                            </div>
+                            <div class="col-md-3" id="contenedorFichaDisco">
+                                <div class="ficha fichaDisco" id="Disco" draggable="true">D</div>
+                            </div>
+                            <div class="col-md-3" id="contenedorFichaListo">
+                                <div class="ficha fichaListo" id="Listo" draggable="true">L</div>
+                            </div>
+                            <div class="col-md-3" id="contenedorFichaTerminado">
+                                <div class="ficha fichaTerminado" id="Terminado" draggable="true">T</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3" id="contenedorFichaListo">
-                    <div class="ficha fichaListo" id="Listo" draggable="true">L</div>
+                <br />
+
+                <div class="containerM">
+                    <div class="row">
+                        <div class="text-center">
+                            <button id="Calcular" class="boton-estilizado" onclick="resolver()">RESOLVER</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3" id="contenedorFichaTerminado">
-                    <div class="ficha fichaTerminado" id="Terminado" draggable="true">T</div>
-                </div>
+
+
             </div>
         </div>
-    </div>
-    <br />
-
-    <div class="containerM">
-        <div class="row">
-            <div class="text-center">
-                <button id="Calcular" class="boton-estilizado" onclick="resolver()">RESOLVER</button>
-            </div>
-        </div>
-    </div>
-
+    </section>
 
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/Scripts/Custom/indexScript/jquery.min.js"></script>
+
+    <script src="~/Scripts/Custom/indexScript/bootstrap.bundle.min.js"></script>
+
+    <script src="~/Scripts/Custom/indexScript/Headroom.js"></script>
+    @*<script src="~/Scripts/Custom/indexScript/jQuery.headroom.js"></script>*@
+    <script src="~/Scripts/Custom/indexScript/slick.min.js"></script>
+    @*<script src="~/Scripts/Custom/indexScript/custom.js"></script>*@
+    <script src="~/Scripts/Custom/index.js"></script>
     <script src="~/Scripts/Custom/ejercicio.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

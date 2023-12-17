@@ -30,13 +30,43 @@ namespace TFG.Controllers
             }
             else
             {
-                return null;
+                return "logout";
+            }
+        }
+
+        public int GetEjercicioId()
+        {
+            string key = "ejercicioId";
+            if (Session[key] != null)
+            {
+                return (int)Session[key];
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public bool isProfesor()
+        {
+            string key = "profesor";
+            if (Session[key] != null)
+            {
+                return (bool)Session[key];
+            }
+            else
+            {
+                return false;
             }
         }
 
 
         #region REDIRECCIONES
         public ActionResult index()
+        {
+            return View("~/Views/Login/Login.cshtml");
+        }
+        public ActionResult LoginView()
         {
             return View("~/Views/Login/Login.cshtml");
         }
@@ -75,6 +105,15 @@ namespace TFG.Controllers
         public ActionResult Ejercicios()
         {
             return View("~/Views/Menu/Ejercicios.cshtml");
+        }
+        public ActionResult Ejercicio()
+        {
+            return View("~/Views/Menu/Ejercicio.cshtml");
+        }
+
+        public ActionResult Crear()
+        {
+            return View("~/Views/Menu/Crear.cshtml");
         }
 
         public ActionResult Menu()
