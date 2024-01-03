@@ -1,5 +1,6 @@
 ﻿const nuevaCuentaLink = document.getElementById("nuevaCuenta");
 const divMensajeError = document.getElementById("mensajeError");
+const ForgetPassword = document.getElementById("ForgetPassword");
 
 $(document).ready(function () {
 
@@ -78,6 +79,11 @@ $('#access').off('click').click(function () {
 nuevaCuentaLink.addEventListener("click", function (event) {
     event.preventDefault();
     window.location.href = "/Login/Register";
+});
+
+ForgetPassword.addEventListener("click", function (event) {
+    event.preventDefault();
+    window.location.href = "/Login/OlvidarContraseña";
 });
 
 

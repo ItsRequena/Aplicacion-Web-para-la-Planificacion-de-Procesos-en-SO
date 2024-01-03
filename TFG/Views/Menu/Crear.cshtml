@@ -40,7 +40,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
+                        <li class="nav-item" active>
                             <a class="nav-link" href="Introduccion">INTRODUCCIÓN</a>
                         </li>
                         <li class="nav-item">
@@ -51,7 +51,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="Crear">CREAR</a>
+                            <a class="nav-link active" href="Crear">CREAR</a>
                         </li>
                     </ul>
                 </div>
@@ -61,14 +61,18 @@
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="" id="userName"></a>
+                                <div class="dropdown-menu" id="dropdownMenu">
+                                    <a id="AsignarProfesor" class="nav-link" href="AsignarProfesor" style="margin-top:5px;" hidden>Asignar Profesor</a>
+                                    <a class="nav-link" href="CambiarContraseña" style="margin-top:5px;">Cambiar Contraseña</a>
+                                    @*<a style="margin-top:5px;"></a>*@
+                                    <a class="nav-link" href="LoginView" style="margin-top:5px;">Cerrar Sesión</a>
+                                </div>
                             </li>
                         </ul>
                         <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="42" height="32" />
                     </div>
                 </div>
-
             </div>
-            <hr>
         </nav>
 
         <!-- CREACIÓN DE EJERCICIOS -->
@@ -132,6 +136,7 @@
                 <div class="text-center">
                     <button id="Calcular" class="boton-practicar" onclick="generar()">GENERAR</button>
                     <button id="Practicar" class="boton-estilizado" onclick="practicar()">PRACTICAR</button>
+                    <button id="GuardarEjercicio" class="boton-guardar" onclick="guardarEjercicio()" hidden>GUARDAR</button>
                 </div>
                 <br />
             </div>
@@ -148,8 +153,46 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-1"></div>
+                <div class="col-md-1" id="botonesAgregaryQuitar" hidden>
+                    <div style="text-align: center; margin-top:50px; margin-right: 50px;">
+                        <div class="row">
+                            <button id="modificacionColumna" onclick="agregarColumna()">+</button>
+                        </div>
+                        <div class="row" style="margin-top:5px;">
+                            <button id="modificacionColumna" onclick="quitarColumna()">-</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- Fichas (E, D, L, T) -->
+            <div class="containerM" id="contenedorFicha" hidden>
+                <div class="row">
+                    <div class="fila">
+                        <div class="col-md-3" id="contenedorFichaEjecucion">
+                            <div class="ficha fichaEjecucion" id="Ejecucion" draggable="true">E</div>
+                        </div>
+                        <div class="col-md-3" id="contenedorFichaDisco">
+                            <div class="ficha fichaDisco" id="Disco" draggable="true">D</div>
+                        </div>
+                        <div class="col-md-3" id="contenedorFichaListo">
+                            <div class="ficha fichaListo" id="Listo" draggable="true">L</div>
+                        </div>
+                        <div class="col-md-3" id="contenedorFichaTerminado">
+                            <div class="ficha fichaTerminado" id="Terminado" draggable="true">T</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="containerM" id="botonResolver" hidden>
+                <div class="row">
+                    <div class="text-center">
+                        <button id="Calcular" class="boton-estilizado" onclick="resolver()">RESOLVER</button>
+                    </div>
+                </div>
+            </div>
+
         </section>
     </main>
 

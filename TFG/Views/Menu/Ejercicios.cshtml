@@ -42,14 +42,14 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
+                        <li class="nav-item" active>
                             <a class="nav-link" href="Introduccion">INTRODUCCIÓN</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Heuristicas">HEURÍSTICAS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Ejercicios">EJERCICIOS</a>
+                            <a class="nav-link active" href="Ejercicios">EJERCICIOS</a>
                         </li>
 
                         <li class="nav-item">
@@ -63,26 +63,31 @@
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="" id="userName"></a>
+                                <div class="dropdown-menu" id="dropdownMenu">
+                                    <a id="AsignarProfesor" class="nav-link" href="AsignarProfesor" style="margin-top:5px;" hidden>Asignar Profesor</a>
+                                    <a class="nav-link" href="CambiarContraseña" style="margin-top:5px;">Cambiar Contraseña</a>
+                                    @*<a style="margin-top:5px;"></a>*@
+                                    <a class="nav-link" href="LoginView" style="margin-top:5px;">Cerrar Sesión</a>
+                                </div>
                             </li>
                         </ul>
                         <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="42" height="32" />
                     </div>
                 </div>
-
             </div>
-            <hr>
         </nav>
 
         <!-- LISTA DE EJERCICIOS -->
         <section class="featured-product section-padding">
             <div class="container">
                 <div class="row">
-                    <table class="table">
+                    <table class="table text-center" style="box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.2); border-radius: 5px; border: 1px solid #ccc; ">
                         <thead class="table-dark">
                             <tr>
                                 <th scope="col">Nº</th>
                                 <th scope="col">Heurística</th>
                                 <th scope="col">Nº Procesos</th>
+                                <th scope="col">Ráfagas</th>
                                 <th scope="col">Subido por</th>
                                 <th scope="col" style="border-width: 1px;">Resolver</th>
                                 <th scope="col" id="columnaBorrar" style="border-width: 1px;" hidden>Eliminar</th>
@@ -95,9 +100,6 @@
             </div>
         </section>
 
-        <div class="bottom-border">
-            <!-- Contenido del div aquí -->
-        </div>
 
     </main>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -111,6 +113,7 @@
     @*<script src="~/Scripts/Custom/indexScript/custom.js"></script>*@
     <script src="~/Scripts/Custom/index.js"></script>
     <script src="~/Scripts/Custom/ejercicios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
 

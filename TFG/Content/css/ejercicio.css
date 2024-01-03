@@ -160,6 +160,19 @@ p {
         background-color: #2D84C5; /* Color de fondo */
     }
 
+.boton-guardar {
+    background-color: #CB0017; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+}
+
+    .boton-guardar:hover {
+        background-color: #b70318; /* Color de fondo */
+    }
+
 #ejemplo {
     border: 2px solid #ccc; /* Borde opcional */
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4); /* Propiedad para la sombra */

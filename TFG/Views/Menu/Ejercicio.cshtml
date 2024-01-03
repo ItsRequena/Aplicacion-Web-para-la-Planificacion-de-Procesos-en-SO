@@ -49,9 +49,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="Ejercicios">EJERCICIOS</a>
                     </li>
-
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="Menu">CREAR</a>
+                        <a class="nav-link" href="Crear">CREAR</a>
                     </li>
                 </ul>
             </div>
@@ -61,6 +61,12 @@
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="" id="userName"></a>
+                            <div class="dropdown-menu" id="dropdownMenu">
+                                <a id="AsignarProfesor" class="nav-link" href="AsignarProfesor" style="margin-top:5px;" hidden>Asignar Profesor</a>
+                                <a class="nav-link" href="CambiarContraseña" style="margin-top:5px;">Cambiar Contraseña</a>
+                                @*<a style="margin-top:5px;"></a>*@
+                                <a class="nav-link" href="LoginView" style="margin-top:5px;">Cerrar Sesión</a>
+                            </div>
                         </li>
                     </ul>
                     <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="42" height="32" />
@@ -78,12 +84,20 @@
 
 
                 <!-- Información de Procesos -->
-                <div class="containerM">
-                    <div class="row">
-                        <p id="cuantoId" hidden></p>
+                <div class="container">
+                    <div class="text-center" id="procesoInfoGeneral">
+
                     </div>
-                    <div class="text-center" id="infoProcesos">
-                        
+                    <div class="row">
+                        <div class="col-md-4" id="procesosInfo-1">
+
+                        </div>
+                        <div class="col-md-4" id="procesosInfo-2">
+
+                        </div>
+                        <div class="col-md-4" id="procesosInfo-3">
+
+                        </div>
                     </div>
                 </div>
 
@@ -92,16 +106,8 @@
                     <div class="col-md-11">
                         <div class="containerM" id="matriz">
                             <div class="scroll-containerM">
-                                <div class="content">
-                                    @for (int i = 0; i < 2; i++)
-                                    {
-                                        <div class="fila" id="fila-@i">
-                                            @for (int j = 0; j < 8; j++)
-                                            {
-                                                <div class="recuadro-blanco" id="recuadro-blanco-@i-@j"></div>
-                                            }
-                                        </div>
-                                    }
+                                <div class="content" id="content-container">
+
                                 </div>
                             </div>
                         </div>

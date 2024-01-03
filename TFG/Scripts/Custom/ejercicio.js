@@ -3,6 +3,12 @@ const contenedorFichasDisco = document.querySelector('#contenedorFichaDisco');
 const contenedorFichasListo = document.querySelector('#contenedorFichaListo');
 const contenedorFichasTerminado = document.querySelector('#contenedorFichaTerminado');
 const infoProcesos = document.querySelector('#infoProcesos');
+const contentContainer = document.getElementById('content-container');
+
+const procesos1Div = document.getElementById("procesosInfo-1");
+const procesos2Div = document.getElementById("procesosInfo-2");
+const procesos3Div = document.getElementById("procesosInfo-3");
+const infoProcesoGeneral = document.getElementById("procesoInfoGeneral");
 
 var fichaInterna = false;
 var ejecucion = false;
@@ -14,14 +20,12 @@ var matriz = [];
 var elementoDiv;
 var contadorColumnas = 8;
 
-var numProcesos = 2;
+var numProcesos;
 var solucion;
 $(document).ready(function () {
-
+    numProcesos = 2;
     inicializarInfoProcesos();
 
-    inicializarDragDropsFichas();
-    inicializarDragDropsMatriz();
 });
 
 function inicializarInfoProcesos() {
@@ -38,14 +42,148 @@ function inicializarInfoProcesos() {
                     async: true,
                     method: 'POST',
                     success: function (data) {
-
-                        console.log("NAZI!");
+                        numProcesos = data.procesos.length;
+                        console.log("---------------------");
                         console.log(data);
 
-                        console.log(data.procesos);
-                        console.log(data.procesos.length);
+
+                        const divGeneral = document.createElement(`div`);
+                        divGeneral.id = `infoGeneral`;
+
+                        const labelHeuristica = document.createElement('h5');
+                        switch (data.ejercicios.heuristicaId) {
+                            case 1:
+                                labelHeuristica.innerHTML = "FCFS";
+                                break;
+                            case 2:
+                                labelHeuristica.innerHTML = "SJF Cooperativo";
+                                break;
+                            case 3:
+                                labelHeuristica.innerHTML = "SJF Apropiativo";
+                                break;
+                            case 4:
+                                labelHeuristica.innerHTML = "RR";
+                                break;
+                        }
+                        divGeneral.appendChild(labelHeuristica);
+
+                        if (data.ejercicios.heuristicaId == 4) {
+                            const cuanto = document.createElement('label');
+                            cuanto.htmlFor = `cuanto`;
+                            cuanto.innerHTML = 'Cuanto: <b>' + data.ejercicios.cuanto + ' segundos </b>';
+                            divGeneral.appendChild(cuanto);
+                        }
+                        infoProcesoGeneral.appendChild(divGeneral);
 
 
+                        // Creacion de procesos
+                        procesos1Div.innerHTML = "";
+                        procesos2Div.innerHTML = "";
+                        procesos3Div.innerHTML = "";
+                        for (let i = 1; i <= data.procesos.length; i++) {
+                            const div = document.createElement(`div`);
+                            div.id = `procesoInfo${i}`;
+                            div.classList.add("text-center");
+
+                            // CABECERA
+                            const header = document.createElement('h5');
+                            header.classList.add('text-center');
+                            header.textContent = `Proceso ${i}`;
+                            div.appendChild(header);
+
+                            // LABEL TIEMPO DE LLEGADA
+                            const labelTllegada = document.createElement('label');
+                            labelTllegada.htmlFor = `tllegada${i}`;
+                            labelTllegada.textContent = 'Tiempo de llegada: ';
+
+                            // INPUT TEXT TIEMPO DE LLEGADA
+                            const inputTllegada = document.createElement('label');
+                            labelTllegada.htmlFor = `tllegada${i}`;
+                            labelTllegada.innerHTML = "Tiempo de llegada: <b>" + data.procesos[i - 1].tiempoLlegada + " segundos </b>";
+
+                            labelTllegada.appendChild(inputTllegada);
+                            div.appendChild(labelTllegada);
+
+                            // SALTO DE LINEA
+                            const br = document.createElement('br');
+                            div.appendChild(br);
+
+                            var rafaga = data.procesos[i - 1].rafaga.split(',');
+
+                            // LABEL NUMERO DE RAFAGAS
+                            const labelNumRafagas = document.createElement('label');
+                            labelNumRafagas.htmlFor = `numRafagas${i}`;
+                            labelNumRafagas.textContent = 'Numero de ráfagas: ' + rafaga.length;
+                            div.appendChild(labelNumRafagas);
+
+
+                            const divRow = document.createElement(`div`);
+                            divRow.classList.add("row");
+
+                            const divCol1 = document.createElement(`div`);
+                            divCol1.classList.add("col-md-1");
+
+                            const divCol2 = document.createElement(`div`);
+                            divCol2.classList.add("col-md-5");
+
+                            const divCol3 = document.createElement(`div`);
+                            divCol2.classList.add("col-md-1");
+
+                            const divCol4 = document.createElement(`div`);
+                            divCol3.classList.add("col-md-2");
+
+                            const divCol5 = document.createElement(`div`);
+                            divCol4.classList.add("col-md-3");
+
+                            for (let j = 0; j < rafaga.length; j++) {
+
+                                const numRafagas = document.createElement('label');
+                                var numRafaga = j + 1;
+                                numRafagas.innerHTML = numRafaga + " Ráfaga:";
+                                divCol2.appendChild(numRafagas);
+
+                                const labelRafagas = document.createElement('label');
+                                const tipoRafaga = document.createElement('label');
+
+                                if (j % 2 == 0) {
+                                    labelRafagas.innerHTML = "<b>" + rafaga[j] + "</b>";
+                                    divCol3.appendChild(labelRafagas);
+
+                                    tipoRafaga.innerHTML = "<b> CPU </b>";
+                                    divCol4.appendChild(tipoRafaga);
+
+                                }
+                                else {
+                                    labelRafagas.innerHTML = "<b>" + rafaga[j] + "</b>";
+                                    divCol3.appendChild(labelRafagas);
+
+                                    tipoRafaga.innerHTML = "<b> Disco </b>";
+                                    divCol4.appendChild(tipoRafaga);
+                                }
+
+                            }
+
+                            divRow.appendChild(divCol1);
+                            divRow.appendChild(divCol2);
+                            divRow.appendChild(divCol3);
+                            divRow.appendChild(divCol4);
+                            divRow.appendChild(divCol5);
+
+                            div.appendChild(divRow);
+
+                            if (i % 3 == 1) {
+                                procesos1Div.appendChild(div);
+                            }
+                            else if (i % 3 == 2) {
+                                procesos2Div.appendChild(div);
+                            }
+                            else {
+                                procesos3Div.appendChild(div);
+                            }
+                        }
+
+
+                        /*
                         for (let i = 0; i < data.procesos.length; i++) {
 
                             console.log("FOR FUERA -" + i);
@@ -89,7 +227,32 @@ function inicializarInfoProcesos() {
 
                             infoProcesos.appendChild(divProcesosInfo)
                         }
+                        */
 
+                        // Creación matriz y fichas
+                        for (var i = 0; i < data.procesos.length; i++) {
+                            // Crear una fila
+                            var fila = document.createElement('div');
+                            fila.className = 'fila';
+                            fila.id = 'fila-' + i;
+
+                            // Bucle interno
+                            for (var j = 0; j < contadorColumnas; j++) {
+                                // Crear un recuadro blanco
+                                var recuadroBlanco = document.createElement('div');
+                                recuadroBlanco.className = 'recuadro-blanco';
+                                recuadroBlanco.id = 'recuadro-blanco-' + i + '-' + j;
+
+                                // Agregar el recuadro blanco a la fila
+                                fila.appendChild(recuadroBlanco);
+                            }
+
+                            // Agregar la fila al contenedor principal
+                            contentContainer.appendChild(fila);
+                        }
+
+                        inicializarDragDropsFichas();
+                        inicializarDragDropsMatriz();
                     },
                     error: function () {
                         Swal.fire({

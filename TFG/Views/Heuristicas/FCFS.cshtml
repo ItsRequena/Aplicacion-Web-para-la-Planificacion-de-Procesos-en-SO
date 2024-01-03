@@ -53,7 +53,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="Index.html">CREAR</a>
+                            <a class="nav-link" href="Crear">CREAR</a>
                         </li>
                     </ul>
                 </div>
@@ -63,6 +63,12 @@
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="" id="userName"></a>
+                                <div class="dropdown-menu" id="dropdownMenu">
+                                    <a id="AsignarProfesor" class="nav-link" href="AsignarProfesor" style="margin-top:5px;" hidden>Asignar Profesor</a>
+                                    <a class="nav-link" href="CambiarContraseña" style="margin-top:5px;">Cambiar Contraseña</a>
+                                    @*<a style="margin-top:5px;"></a>*@
+                                    <a class="nav-link" href="LoginView" style="margin-top:5px;">Cerrar Sesión</a>
+                                </div>
                             </li>
                         </ul>
                         <img src="~/Content/images/usuario-urjc.svg" id="icon" alt="User Icon" width="42" height="32" />
@@ -94,14 +100,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
-                                <p><b>Proceso 1</b></p>
+                                <h6><strong>Proceso 1</strong></h6>
                                 <p>Tiempo de llegada: 0 segundos</p>
                                 <p>Ráfagas: 20 CPU - 10 Disco - 10 CPU</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
-                                <p><b>Proceso 2</b></p>
+                                <h6><b>Proceso 2</b></h6>
                                 <p>Tiempo de llegada: 10 segundos</p>
                                 <p>Ráfagas: 10 CPU - 10 Disco - 20 CPU</p>
                             </div>
@@ -150,7 +156,7 @@
     <script src="~/Scripts/Custom/indexScript/Headroom.js"></script>
     @*<script src="~/Scripts/Custom/indexScript/jQuery.headroom.js"></script>*@
     <script src="~/Scripts/Custom/indexScript/slick.min.js"></script>
-    @*<script src="~/Scripts/Custom/indexScript/custom.js"></script>*@
+    <script src="~/Scripts/Custom/index.js"></script>
     <script src="~/Scripts/Custom/rellenarEjemplos.js"></script>
 </body>
 </html>

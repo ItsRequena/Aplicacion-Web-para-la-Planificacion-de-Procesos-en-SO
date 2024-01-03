@@ -306,6 +306,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Custom\asignarProfesor.js" />
     <Content Include="Scripts\Custom\ejercicio.js" />
     <Content Include="Scripts\Custom\ejercicios.js" />
     <Content Include="Scripts\Custom\index.js" />
@@ -351,6 +352,9 @@
     <Content Include="Views\Heuristicas\SJF.cshtml" />
     <Content Include="Views\Menu\Introduccion.cshtml" />
     <Content Include="Views\Menu\Ejercicios.cshtml" />
+    <Content Include="Views\Login\NewPassword.cshtml" />
+    <Content Include="Views\Menu\AsignarProfesor.cshtml" />
+    <Content Include="Views\Login\ForgetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -74,6 +74,18 @@ namespace TFG.Controllers
         {
             return View("~/Views/Login/Register.cshtml");
         }
+        public ActionResult CambiarContraseña()
+        {
+            return View("~/Views/Login/NewPassword.cshtml");
+        }
+        public ActionResult OlvidarContraseña()
+        {
+            return View("~/Views/Login/ForgetPassword.cshtml");
+        }
+        public ActionResult AsignarProfesor()
+        {
+            return View("~/Views/Menu/AsignarProfesor.cshtml");
+        }
         #region HEURISTICAS
         public ActionResult Heuristicas()
         {
