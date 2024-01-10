@@ -8,7 +8,7 @@ const contentContainer = document.getElementById('content-container');
 const procesos1Div = document.getElementById("procesosInfo-1");
 const procesos2Div = document.getElementById("procesosInfo-2");
 const procesos3Div = document.getElementById("procesosInfo-3");
-const infoProcesoGeneral = document.getElementById("procesoInfoGeneral");
+const infoProcesoGeneral = document.getElementById("infoGeneral");
 
 var fichaInterna = false;
 var ejecucion = false;
@@ -70,7 +70,7 @@ function inicializarInfoProcesos() {
                         if (data.ejercicios.heuristicaId == 4) {
                             const cuanto = document.createElement('label');
                             cuanto.htmlFor = `cuanto`;
-                            cuanto.innerHTML = 'Cuanto: <b>' + data.ejercicios.cuanto + ' segundos </b>';
+                            cuanto.innerHTML = '<b>Cuanto</b>: ' + data.ejercicios.cuanto + ' segundos ';
                             divGeneral.appendChild(cuanto);
                         }
                         infoProcesoGeneral.appendChild(divGeneral);
@@ -731,12 +731,16 @@ function resolver() {
             var contenido = "";
             var solucion = true;
             for (var i = 0; i < numProcesos; i++) {
-                for (var j = 0; j < contadorColumnas; j++) {
+                for (var j = 0; j < data[i].length; j++) {
 
                     console.log(data[i][j]);
                     console.log(matriz[i][j]);
                     recuadro = `recuadro-blanco-${i}-${j}`;
                     const elemento = document.querySelector('#' + recuadro);
+                    if (elemento == null) {
+                        solucion = false
+                        break;
+                    }
                     const divHijo = elemento.querySelector('div');
 
                     if(matriz[i][j] == '-' && data[i][j] == null) {

@@ -42,9 +42,6 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item" active>
-                            <a class="nav-link" href="Introduccion">INTRODUCCIÓN</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="Heuristicas">HEURÍSTICAS</a>
                         </li>
@@ -89,12 +86,15 @@
                         <div class="text-center">
                             <h4 class="mb-3">Propiedades de la Planificación <span>RR</span></h4>
                         </div>
-                        <p>Es similar a FCFS, pero cada cierto tiempo (<b>cuanto</b>) el S.O desaloja el proceso que se está ejecutando y lo pone al final de la cola de procesos preparados. El <b>primer proceso de la cola</b> de preparados <b>toma la CPU</b>.</p>
-                        <p>Típico de los sistemas de tiempo compartido.</p>
-                        <p>El <b>rendimiento del algoritmo depende mucho de la duración del cuanto de tiempo</b> respecto a la duración media de las ráfagas de CPU:</p>
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;- Un <b>cuanto muy grande</b> en RR es casi lo mismo que <b>FCFS</b>.</p>
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;- Un <b>cuanto muy pequeño</b> producirá muchos cambios de contexto (<b>se pierde tiempo en cada cambio</b>).</p>
-                        <p>Ejemplo con cuanto de 20 segundos:</p>
+                        <div class="row">
+                                <p>Es similar a FCFS, pero cada cierto tiempo (<b>cuanto</b>) el S.O desaloja el proceso que se está ejecutando y lo pone al final de la cola de procesos preparados. El <b>primer proceso de la cola</b> de preparados <b>toma la CPU</b>.</p>
+                                <p>Típico de los sistemas de tiempo compartido.</p>
+                                <p>El <b>rendimiento del algoritmo depende mucho de la duración del cuanto de tiempo</b> respecto a la duración media de las ráfagas de CPU:</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;- Un <b>cuanto muy grande</b> en RR es casi lo mismo que <b>FCFS</b>.</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;- Un <b>cuanto muy pequeño</b> producirá muchos cambios de contexto (<b>se pierde tiempo en cada cambio</b>).</p>
+                                <p>Ejemplo con cuanto de 20 segundos:</p>
+ 
+                        </div>
                     </div>
                 </div>
 
